@@ -2,8 +2,6 @@ package org.agoncal.quarkus.panache.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 /**
  * @author Antonio Goncalves
@@ -11,9 +9,6 @@ import javax.persistence.NamedQuery;
  *         --
  */
 @Entity
-@NamedQueries({
-        @NamedQuery(name = CD.FIND_ALL, query = "select c from CD c"),
-})
 public class CD extends Item {
 
   // ======================================

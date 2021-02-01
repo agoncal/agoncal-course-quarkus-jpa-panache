@@ -5,8 +5,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 
 /**
  * @author Antonio Goncalves
@@ -14,9 +12,6 @@ import javax.persistence.NamedQuery;
  *         --
  */
 @Entity
-@NamedQueries({
-        @NamedQuery(name = Publisher.FIND_ALL, query = "select p from Publisher p"),
-})
 public class Publisher {
 
   // ======================================

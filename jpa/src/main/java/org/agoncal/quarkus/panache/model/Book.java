@@ -6,8 +6,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import java.time.LocalDate;
 
 /**
@@ -16,9 +14,6 @@ import java.time.LocalDate;
  *         --
  */
 @Entity
-@NamedQueries({
-        @NamedQuery(name = Book.FIND_ALL, query = "select b from Book b"),
-})
 public class Book extends Item {
 
   // ======================================
