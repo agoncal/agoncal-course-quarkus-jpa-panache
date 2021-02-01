@@ -8,8 +8,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import java.time.LocalDate;
 
 /**
@@ -34,7 +32,6 @@ public class Book extends Item {
   private Integer nbOfPages;
 
   @Column(name = "publication_date")
-  @Temporal(TemporalType.DATE)
   private LocalDate publicationDate;
 
   @Enumerated(EnumType.STRING)
