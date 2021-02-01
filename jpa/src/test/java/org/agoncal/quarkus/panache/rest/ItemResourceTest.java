@@ -5,7 +5,6 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.panache.model.Book;
 import org.agoncal.quarkus.panache.model.CD;
-import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Test;
 
 import static io.restassured.RestAssured.given;
@@ -40,7 +39,14 @@ public class ItemResourceTest {
     when()
       .post("/api/books").
     then()
-      .statusCode(OK.getStatusCode());
+      .statusCode(OK.getStatusCode())
+      .header(CONTENT_TYPE, APPLICATION_JSON)
+      .body("title", is("Understanding Quarkus"))
+      .body("description", startsWith("Best Quarkus book ever"))
+      .body("unitCost", is(9.99F))
+      .body("isbn", is("13-235-8764"))
+      .body("nbOfPages", is(500));
+
 
     given()
       .header(ACCEPT, TEXT_PLAIN).
@@ -58,13 +64,16 @@ public class ItemResourceTest {
     then()
       .statusCode(OK.getStatusCode())
       .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body("title", Is.is("Beginning Java EE 7"))
+      .body("id", is(1000))
+      .body("title", is("Beginning Java EE 7"))
       .body("description", startsWith("Java Enterprise Edition (Java EE) continues to be one of the leading"))
-      .body("unitCost", Is.is(49.99F))
-      .body("isbn", Is.is("143024626X"))
-      .body("publicationDate", Is.is("2014-02-05"))
-      .body("language", Is.is("ENGLISH"))
-      .body("nbOfPages", Is.is(608));
+      .body("unitCost", is(49.99F))
+      .body("isbn", is("143024626X"))
+      .body("publicationDate", is("2014-02-05"))
+      .body("language", is("ENGLISH"))
+      .body("nbOfPages", is(608))
+      .body("publisher.id", is(1001))
+      .body("publisher.name", is( "APress"));
 
     given()
       .pathParam("id", 1000).
@@ -120,12 +129,12 @@ public class ItemResourceTest {
       then()
       .statusCode(OK.getStatusCode())
       .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body("title", Is.is("Let It Be"))
+      .body("title", is("Let It Be"))
       .body("description", startsWith("Let It Be is the 12th and final studio album released by the English rock band"))
-      .body("unitCost", Is.is(12.99F))
-      .body("totalDuration", Is.is(123.0F))
-      .body("musicCompany", Is.is("EMI"))
-      .body("genre", Is.is("Pop Rock"));
+      .body("unitCost", is(12.99F))
+      .body("totalDuration", is(123.0F))
+      .body("musicCompany", is("EMI"))
+      .body("genre", is("Pop Rock"));
 
     given()
       .pathParam("id", 100).
