@@ -4,11 +4,12 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.agoncal.quarkus</groupId>
   <artifactId>jpa-panache</artifactId>
-  <version>1.0</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
   <name>Building a Quarkus Application with JPA and Panache</name>
   <modules>
     <module>jpa</module>
+    <module>legacy</module>
     <module>panache</module>
   </modules>
 </project>

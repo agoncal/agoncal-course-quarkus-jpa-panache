@@ -5,22 +5,12 @@ import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.time.LocalDate;
 
 /**
  * @author Antonio Goncalves
@@ -38,24 +28,17 @@ public class Book extends Item {
   // ======================================
 
   @Column(length = 15)
-  @NotNull
-  @Size(max = 15)
   private String isbn;
 
   @Column(name = "nb_of_pages")
-  @Min(1)
-  private Integer nbOfPage;
+  private Integer nbOfPages;
 
   @Column(name = "publication_date")
   @Temporal(TemporalType.DATE)
-  private Date publicationDate;
+  private LocalDate publicationDate;
 
   @Enumerated(EnumType.STRING)
   private Language language;
-
-  @OneToMany
-  @JoinTable(name = "book_author", joinColumns = @JoinColumn(name = "book_fk"), inverseJoinColumns = @JoinColumn(name = "author_fk"))
-  private Set<Author> authors = new HashSet<>();
 
   @ManyToOne
   @JoinColumn(name = "publisher_pk")
@@ -74,12 +57,12 @@ public class Book extends Item {
   public Book() {
   }
 
-  public Book(String title, String description, Float unitCost, String isbn, Integer nbOfPage) {
+  public Book(String title, String description, Float unitCost, String isbn, Integer nbOfPages) {
     this.title = title;
     this.description = description;
     this.unitCost = unitCost;
     this.isbn = isbn;
-    this.nbOfPage = nbOfPage;
+    this.nbOfPages = nbOfPages;
   }
 
   // ======================================
@@ -94,19 +77,19 @@ public class Book extends Item {
     this.isbn = isbn;
   }
 
-  public Integer getNbOfPage() {
-    return nbOfPage;
+  public Integer getNbOfPages() {
+    return nbOfPages;
   }
 
-  public void setNbOfPage(Integer nbOfPage) {
-    this.nbOfPage = nbOfPage;
+  public void setNbOfPages(Integer nbOfPage) {
+    this.nbOfPages = nbOfPage;
   }
 
-  public Date getPublicationDate() {
+  public LocalDate getPublicationDate() {
     return publicationDate;
   }
 
-  public void setPublicationDate(Date publicationDate) {
+  public void setPublicationDate(LocalDate publicationDate) {
     this.publicationDate = publicationDate;
   }
 
@@ -118,56 +101,11 @@ public class Book extends Item {
     this.language = language;
   }
 
-  public Set<Author> getAuthors() {
-    return authors;
-  }
-
-  public void setAuthors(Set<Author> authors) {
-    this.authors = authors;
-  }
-
   public Publisher getPublisher() {
     return publisher;
   }
 
   public void setPublisher(Publisher publisher) {
     this.publisher = publisher;
-  }
-
-  // ======================================
-  // =    hashcode, equals & toString     =
-  // ======================================
-
-
-  @Override
-  public boolean equals(Object o) {
-    if (this == o) return true;
-    if (o == null || getClass() != o.getClass()) return false;
-    if (!super.equals(o)) return false;
-
-    Book book = (Book) o;
-
-    if (!isbn.equals(book.isbn)) return false;
-    if (language != book.language) return false;
-    if (nbOfPage != null ? !nbOfPage.equals(book.nbOfPage) : book.nbOfPage != null) return false;
-    if (publicationDate != null ? !publicationDate.equals(book.publicationDate) : book.publicationDate != null) return false;
-
-    return true;
-  }
-
-  @Override
-  public int hashCode() {
-    int result = super.hashCode();
-    result = 31 * result + isbn.hashCode();
-    result = 31 * result + (nbOfPage != null ? nbOfPage.hashCode() : 0);
-    result = 31 * result + (publicationDate != null ? publicationDate.hashCode() : 0);
-    result = 31 * result + (language != null ? language.hashCode() : 0);
-    return result;
-  }
-
-  @Override
-  public String toString() {
-    final StringBuilder sb = new StringBuilder(title);
-    return sb.toString();
   }
 }
