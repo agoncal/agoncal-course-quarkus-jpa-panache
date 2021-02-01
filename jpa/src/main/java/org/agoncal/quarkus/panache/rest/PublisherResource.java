@@ -35,6 +35,7 @@ public class PublisherResource {
     return em.find(Publisher.class, id);
   }
 
+  @Path("/count")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public Long countPublishers() {

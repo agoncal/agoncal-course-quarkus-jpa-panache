@@ -20,11 +20,11 @@ import static org.hamcrest.CoreMatchers.is;
 public class PublisherResourceTest {
 
   @Test
-  public void shouldCRUDBooks() {
+  public void shouldCRUDPublishers() {
     given()
       .header(ACCEPT, TEXT_PLAIN).
     when()
-      .get("/api/publishers").
+      .get("/api/publishers/count").
     then()
       .statusCode(OK.getStatusCode())
       .body(is("11"));
@@ -43,7 +43,7 @@ public class PublisherResourceTest {
     given()
       .header(ACCEPT, TEXT_PLAIN).
     when()
-      .get("/api/publishers").
+      .get("/api/publishers/count").
     then()
       .statusCode(OK.getStatusCode())
       .body(is("12"));
@@ -68,7 +68,7 @@ public class PublisherResourceTest {
     given()
       .header(ACCEPT, TEXT_PLAIN).
     when()
-      .get("/api/publishers").
+      .get("/api/publishers/count").
     then()
       .statusCode(OK.getStatusCode())
       .body(is("11"));

@@ -11,10 +11,11 @@ import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 
-@Path("/api/items")
+@Path("/api")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class ItemResource {
@@ -32,7 +33,7 @@ public class ItemResource {
 
   @Path("/books/{id}")
   @GET
-  public Book findBookById(Long id) {
+  public Book findBookById(@PathParam("id") Long id) {
     return em.find(Book.class, id);
   }
 
@@ -40,13 +41,13 @@ public class ItemResource {
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public Long countBooks() {
-    return em.createQuery("select count(b) from Book p", Long.class).getSingleResult();
+    return em.createQuery("select count(b) from Book b", Long.class).getSingleResult();
   }
 
   @Path("/books/{id}")
   @DELETE
   @Transactional
-  public void deleteBook(Long id) {
+  public void deleteBook(@PathParam("id") Long id) {
     em.remove(em.getReference(Book.class, id));
   }
 
@@ -60,7 +61,7 @@ public class ItemResource {
 
   @Path("/cds/{id}")
   @GET
-  public CD findCDById(Long id) {
+  public CD findCDById(@PathParam("id") Long id) {
     return em.find(CD.class, id);
   }
 
@@ -73,7 +74,8 @@ public class ItemResource {
 
   @Path("/cds/{id}")
   @DELETE
-  public void deleteCD(Long id) {
+  @Transactional
+  public void deleteCD(@PathParam("id") Long id) {
     em.remove(em.getReference(CD.class, id));
   }
 }
