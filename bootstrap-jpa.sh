@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 mvn -U io.quarkus:quarkus-maven-plugin:create \
-        -DprojectGroupId=org.agoncal.quarkus.microservices \
-        -DprojectArtifactId=rest-book \
-        -DclassName="org.agoncal.quarkus.microservices.book.BookResource" \
-        -Dpath="/api/books" \
-        -Dextensions="resteasy-jsonb"
+        -DprojectGroupId=org.agoncal.quarkus \
+        -DprojectArtifactId=jpa-panache \
+        -DclassName="org.agoncal.quarkus.panache.rest.ItemResource" \
+        -Dpath="/api/items" \
+        -Dextensions="hibernate-orm,resteasy-jsonb"
