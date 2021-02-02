@@ -5,8 +5,8 @@ import javax.persistence.Entity;
 
 /**
  * @author Antonio Goncalves
- *         http://www.antoniogoncalves.org
- *         --
+ * http://www.antoniogoncalves.org
+ * --
  */
 @Entity
 public class CD extends Item {
@@ -16,18 +16,12 @@ public class CD extends Item {
   // ======================================
 
   @Column(name = "total_duration")
-  private Float totalDuration;
+  public Float totalDuration;
 
   @Column(name = "music_company")
-  private String musicCompany;
+  public String musicCompany;
 
-  private String genre;
-
-  // ======================================
-  // =              Constant              =
-  // ======================================
-
-  public static final String FIND_ALL = "CD.findAll";
+  public String genre;
 
   // ======================================
   // =            Constructors            =
@@ -41,34 +35,6 @@ public class CD extends Item {
     this.description = description;
     this.unitCost = unitCost;
     this.totalDuration = totalDuration;
-    this.genre = genre;
-  }
-
-  // ======================================
-  // =          Getters & Setters         =
-  // ======================================
-
-  public Float getTotalDuration() {
-    return totalDuration;
-  }
-
-  public void setTotalDuration(Float totalDuration) {
-    this.totalDuration = totalDuration;
-  }
-
-  public String getMusicCompany() {
-    return musicCompany;
-  }
-
-  public void setMusicCompany(String musicCompany) {
-    this.musicCompany = musicCompany;
-  }
-
-  public String getGenre() {
-    return genre;
-  }
-
-  public void setGenre(String genre) {
     this.genre = genre;
   }
 }

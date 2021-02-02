@@ -21,26 +21,20 @@ public class Book extends Item {
   // ======================================
 
   @Column(length = 15)
-  private String isbn;
+  public String isbn;
 
   @Column(name = "nb_of_pages")
-  private Integer nbOfPages;
+  public Integer nbOfPages;
 
   @Column(name = "publication_date")
-  private LocalDate publicationDate;
+  public LocalDate publicationDate;
 
   @Enumerated(EnumType.STRING)
-  private Language language;
+  public Language language;
 
   @ManyToOne
   @JoinColumn(name = "publisher_pk")
-  private Publisher publisher;
-
-  // ======================================
-  // =              Constant              =
-  // ======================================
-
-  public static final String FIND_ALL = "Book.findAll";
+  public Publisher publisher;
 
   // ======================================
   // =            Constructors            =
@@ -55,49 +49,5 @@ public class Book extends Item {
     this.unitCost = unitCost;
     this.isbn = isbn;
     this.nbOfPages = nbOfPages;
-  }
-
-  // ======================================
-  // =          Getters & Setters         =
-  // ======================================
-
-  public String getIsbn() {
-    return isbn;
-  }
-
-  public void setIsbn(String isbn) {
-    this.isbn = isbn;
-  }
-
-  public Integer getNbOfPages() {
-    return nbOfPages;
-  }
-
-  public void setNbOfPages(Integer nbOfPage) {
-    this.nbOfPages = nbOfPage;
-  }
-
-  public LocalDate getPublicationDate() {
-    return publicationDate;
-  }
-
-  public void setPublicationDate(LocalDate publicationDate) {
-    this.publicationDate = publicationDate;
-  }
-
-  public Language getLanguage() {
-    return language;
-  }
-
-  public void setLanguage(Language language) {
-    this.language = language;
-  }
-
-  public Publisher getPublisher() {
-    return publisher;
-  }
-
-  public void setPublisher(Publisher publisher) {
-    this.publisher = publisher;
   }
 }
