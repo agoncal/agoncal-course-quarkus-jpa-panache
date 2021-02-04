@@ -10,6 +10,9 @@
     <class>org.agoncal.quarkus.panache.model.CD</class>
     <class>org.agoncal.quarkus.panache.model.Item</class>
     <class>org.agoncal.quarkus.panache.model.Publisher</class>
+    <class>org.agoncal.quarkus.panache.model.Artist</class>
+    <class>org.agoncal.quarkus.panache.model.Author</class>
+    <class>org.agoncal.quarkus.panache.model.Musician</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
