@@ -1,0 +1,58 @@
+@startuml
+!include style.iuml
+
+abstract class PanacheEntityBase {
+  {static} + find(String query, Sort sort, Parameters params): PanacheQuery
+  {static} + findAll(): PanacheQuery
+  {static} + findAll(Sort sort): PanacheQuery
+  {static} + list(String query, Sort sort, Parameters params): List<PanacheEntityBase>
+  {static} + listAll(): List<PanacheEntityBase>
+  {static} + listAll(Sort sort): List<PanacheEntityBase>
+  {static} + stream(String query, Sort sort, Parameters params): Stream<PanacheEntityBase>
+  {static} + streamAll(): Stream<PanacheEntityBase>
+  {static} + streamAll(Sort sort): Stream<PanacheEntityBase>
+  {static} + count(): long
+  {static} + count(String query, Parameters params): long
+  {static} + delete(String query, Parameters params): long
+  {static} + update(String query, Parameters params): int
+}
+
+interface PanacheQuery {
+  + page(): Page
+  + filter(String filterName, Parameters parameters): PanacheQuery
+  + list(): List<Entity>
+  + stream(): Stream<Entity>
+  + firstResult(): Entity
+  + firstResultOptional(): Optional<Entity>
+  + singleResult(): Entity
+}
+
+class Page {
+  - index: int
+  - size: int
+  + next(): Page
+  + previous(): Page
+  + first(): Page
+  + index(int newIndex): Page
+}
+
+class Sort {
+  - columns: List<Column>
+  + direction(): Direction
+  + column(): Column
+
+}
+
+class Parameters {
+  - values: Map<String, Object>
+  + and(String name, Object value): Parameters
+  + map(): Map<String, Object>
+  {static} + with(String name, Object value): Parameters
+}
+
+PanacheEntityBase .down.> PanacheQuery
+PanacheEntityBase .right.> Sort
+PanacheQuery .right.> Parameters
+PanacheQuery .down.> Page
+
+@enduml

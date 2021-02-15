@@ -1,0 +1,30 @@
+@startuml
+!include style.iuml
+
+class PublisherRepository <<@ApplicationScoped>> {
+  + findByName(String name): Optional<Publisher>
+  + deleteByName(String name): long
+}
+
+interface PanacheRepository {
+}
+
+interface PanacheRepositoryBase {
+  + default delete(Entity entity): void
+  + default flush(): void
+  + default persist(Entity entity): void
+  + default findById(Id id): Entity
+  + default persist(Iterable<Entity> entities): void
+  + default persist(Stream<Entity> entities): void
+  + default find(String query, Sort sort, Parameters params): PanacheQuery<Entity>
+  + default findAll(): PanacheQuery<Entity>
+  + default list(String query, Sort sort, Map<String, Object> params): List<Entity>
+  + default listAll(): List<Entity>
+  + default stream(String query, Map<String, Object> params): Stream<Entity>
+  + default streamAll(Sort sort): Stream<Entity>
+}
+
+PanacheRepository <|-- PublisherRepository
+PanacheRepositoryBase <|-- PanacheRepository
+
+@enduml

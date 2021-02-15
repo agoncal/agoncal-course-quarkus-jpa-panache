@@ -1,0 +1,22 @@
+skinparam dpi 300
+skinparam BackgroundColor transparent
+skinparam DefaultFontColor #262626
+skinparam DefaultFontSize 20
+
+skinparam CircledCharacterFontColor #262626
+
+skinparam ClassArrowColor #262626
+skinparam ClassBorderColor #262626
+skinparam ClassHeaderBackgroundColor #747F83
+skinparam ClassFontColor #F2F2F2
+skinparam ClassStereotypeFontColor #F2F2F2
+skinparam ClassBackgroundColor #ECECED
+
+skinparam IconPublicBackgroundColor #ACD0CA
+skinparam IconPublicColor #ACD0CA
+skinparam IconPrivateBackgroundColor #ACD0C0
+skinparam IconPrivateColor #ACD0C0
+
+skinparam StereotypeABackgroundColor #B6AF9D
+skinparam StereotypeCBackgroundColor #B6AF9D
+skinparam StereotypeIBackgroundColor #D6CEB5

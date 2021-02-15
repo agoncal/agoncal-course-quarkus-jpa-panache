@@ -1,0 +1,30 @@
+@startuml
+!include style.iuml
+
+class Publisher <<Entity>> {
+  + name: String
+}
+
+abstract class PanacheEntity <<@MappedSuperclass>> {
+  + id: Long <<@Id>> <<@GeneratedValue>>
+}
+
+abstract class PanacheEntityBase {
+  + delete(): void
+  + flush(): void
+  + isPersistent(): boolean
+  + persist(): void
+  + persistAndFlush(): void
+  + {static} deleteAll(): long
+  + {static} deleteById(Object id): boolean
+  + {static} findById(Object id): PanacheEntityBase
+  + {static} findByIdOptional(Object id): Optional<PanacheEntityBase>
+  + {static} persist(Iterable<?> entities): void
+  + {static} persist(Stream<?> entities): void
+  {method} ...
+}
+
+PanacheEntityBase <|-- PanacheEntity
+PanacheEntity <|-- Publisher
+
+@enduml
