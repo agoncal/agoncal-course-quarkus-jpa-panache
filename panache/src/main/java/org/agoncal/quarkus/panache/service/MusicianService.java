@@ -7,13 +7,17 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @ApplicationScoped
-@Transactional
+@Transactional(SUPPORTS)
 public class MusicianService {
 
   @Inject
   MusicianRepository repository;
 
+  @Transactional(REQUIRED)
   public Musician persistMusician(Musician musician) {
     repository.persist(musician);
     return musician;
@@ -23,6 +27,7 @@ public class MusicianService {
     return repository.findById(id);
   }
 
+  @Transactional(REQUIRED)
   public void deleteMusician(Long id) {
     repository.deleteById(id);
   }

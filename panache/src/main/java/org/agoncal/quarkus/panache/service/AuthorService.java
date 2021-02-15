@@ -7,13 +7,17 @@ import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @ApplicationScoped
-@Transactional
+@Transactional(SUPPORTS)
 public class AuthorService {
 
   @Inject
   AuthorRepository repository;
 
+  @Transactional(REQUIRED)
   public Author persistAuthor(Author author) {
     repository.persist(author);
     return author;
@@ -23,6 +27,7 @@ public class AuthorService {
     return repository.findById(id);
   }
 
+  @Transactional(REQUIRED)
   public void deleteAuthor(Long id) {
     repository.deleteById(id);
   }

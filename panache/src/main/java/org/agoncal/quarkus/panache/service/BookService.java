@@ -5,10 +5,14 @@ import org.agoncal.quarkus.panache.model.Book;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 
+import static javax.transaction.Transactional.TxType.REQUIRED;
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @ApplicationScoped
-@Transactional
+@Transactional(SUPPORTS)
 public class BookService {
 
+  @Transactional(REQUIRED)
   public Book persistBook(Book book) {
     Book.persist(book);
     return book;
@@ -18,6 +22,7 @@ public class BookService {
     return Book.findById(id);
   }
 
+  @Transactional(REQUIRED)
   public void deleteBook(Long id) {
     Book.deleteById(id);
   }
