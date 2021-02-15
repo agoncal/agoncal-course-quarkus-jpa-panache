@@ -2,6 +2,9 @@ package org.agoncal.quarkus.panache.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
+import java.math.BigDecimal;
+import java.util.List;
 
 /**
  * @author Antonio Goncalves
@@ -15,13 +18,13 @@ public class CD extends Item {
   // =             Attributes             =
   // ======================================
 
-  @Column(name = "total_duration")
-  public Float totalDuration;
-
   @Column(name = "music_company")
   public String musicCompany;
 
   public String genre;
+
+  @OneToMany
+  public List<Track> tracks;
 
   // ======================================
   // =            Constructors            =
@@ -30,11 +33,10 @@ public class CD extends Item {
   public CD() {
   }
 
-  public CD(String title, String description, Float unitCost, Float totalDuration, String genre) {
+  public CD(String title, String description, BigDecimal price, String genre) {
     this.title = title;
     this.description = description;
-    this.unitCost = unitCost;
-    this.totalDuration = totalDuration;
+    this.price = price;
     this.genre = genre;
   }
 }

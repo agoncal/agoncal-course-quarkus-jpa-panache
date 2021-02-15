@@ -6,6 +6,7 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import java.math.BigDecimal;
 import java.time.LocalDate;
 
 /**
@@ -43,10 +44,10 @@ public class Book extends Item {
   public Book() {
   }
 
-  public Book(String title, String description, Float unitCost, String isbn, Integer nbOfPages) {
+  public Book(String title, String description, BigDecimal price, String isbn, Integer nbOfPages) {
     this.title = title;
     this.description = description;
-    this.unitCost = unitCost;
+    this.price = price;
     this.isbn = isbn;
     this.nbOfPages = nbOfPages;
   }

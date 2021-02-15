@@ -6,6 +6,8 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.Table;
+import java.math.BigDecimal;
 
 /**
  * @author Antonio Goncalves
@@ -13,6 +15,7 @@ import javax.persistence.InheritanceType;
  * --
  */
 @Entity
+@Table(name = "t_items")
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 public class Item extends PanacheEntity {
 
@@ -20,12 +23,10 @@ public class Item extends PanacheEntity {
   // =             Attributes             =
   // ======================================
 
-  @Column(length = 100)
   public String title;
 
   @Column(length = 3000)
   public String description;
 
-  @Column(name = "unit_cost")
-  public Float unitCost;
+  public BigDecimal price;
 }
