@@ -3,6 +3,7 @@ package org.agoncal.quarkus.panache.model;
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import java.time.Duration;
 
 /**
@@ -11,6 +12,7 @@ import java.time.Duration;
  * --
  */
 @Entity
+@Table(name = "t_tracks")
 public class Track extends PanacheEntity {
 
   // ======================================

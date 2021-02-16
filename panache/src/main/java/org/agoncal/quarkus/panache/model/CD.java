@@ -3,6 +3,7 @@ package org.agoncal.quarkus.panache.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,6 +25,7 @@ public class CD extends Item {
 
   public String genre;
 
+  @JoinColumn(name = "cd_fk")
   @OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
   public List<Track> tracks;
 

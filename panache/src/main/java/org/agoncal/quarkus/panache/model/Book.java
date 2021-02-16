@@ -35,7 +35,7 @@ public class Book extends Item {
   public Language language;
 
   @ManyToOne
-  @JoinColumn(name = "publisher_pk")
+  @JoinColumn(name = "publisher_fk")
   public Publisher publisher;
 
   // ======================================

@@ -2,6 +2,7 @@ package org.agoncal.quarkus.panache.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Size;
 
 /**
@@ -10,6 +11,7 @@ import javax.validation.constraints.Size;
  *         --
  */
 @Entity
+@Table(name = "t_authors")
 public class Author extends Artist {
 
   // ======================================

@@ -4,6 +4,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author Antonio Goncalves
@@ -11,6 +12,7 @@ import javax.persistence.Entity;
  * --
  */
 @Entity
+@Table(name = "t_publishers")
 public class Publisher extends PanacheEntity {
 
   // ======================================

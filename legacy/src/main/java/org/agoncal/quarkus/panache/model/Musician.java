@@ -2,6 +2,7 @@ package org.agoncal.quarkus.panache.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 
 /**
  * @author Antonio Goncalves
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
  * --
  */
 @Entity
+@Table(name = "t_musicians")
 public class Musician extends Artist {
 
   // ======================================
