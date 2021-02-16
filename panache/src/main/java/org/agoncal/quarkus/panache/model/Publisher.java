@@ -4,9 +4,6 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 /**
  * @author Antonio Goncalves
@@ -22,12 +19,6 @@ public class Publisher extends PanacheEntity {
 
   @Column(length = 30)
   public String name;
-
-  // ======================================
-  // =              Constant              =
-  // ======================================
-
-  public static final String FIND_ALL = "Publisher.findAll";
 
   // ======================================
   // =            Constructors            =

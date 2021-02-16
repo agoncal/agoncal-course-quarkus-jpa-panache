@@ -8,11 +8,12 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.Optional;
 
 /**
  * @author Antonio Goncalves
- *         http://www.antoniogoncalves.org
- *         --
+ * http://www.antoniogoncalves.org
+ * --
  */
 @Entity
 public class Book extends Item {
@@ -50,5 +51,17 @@ public class Book extends Item {
     this.price = price;
     this.isbn = isbn;
     this.nbOfPages = nbOfPages;
+  }
+
+  // ======================================
+  // =              Methods               =
+  // ======================================
+
+  public static Optional<Book> findByIsbn(String isbn) {
+    return find("isbn", isbn).firstResultOptional();
+  }
+
+  public static long deleteByIsbn(String isbn) {
+    return delete("isbn", isbn);
   }
 }

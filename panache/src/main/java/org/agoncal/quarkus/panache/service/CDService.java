@@ -1,9 +1,11 @@
 package org.agoncal.quarkus.panache.service;
 
 import org.agoncal.quarkus.panache.model.CD;
+import org.agoncal.quarkus.panache.model.Track;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
+import java.util.List;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
@@ -14,6 +16,14 @@ public class CDService {
 
   @Transactional(REQUIRED)
   public CD persistCD(CD cd) {
+    CD.persist(cd);
+    return cd;
+  }
+
+  @Transactional(REQUIRED)
+  public CD persistCDWithTracks(CD cd, List<Track> tracks) {
+    Track.persist(tracks);
+    cd.tracks = tracks;
     CD.persist(cd);
     return cd;
   }
