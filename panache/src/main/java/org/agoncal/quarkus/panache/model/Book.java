@@ -8,6 +8,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -59,6 +60,10 @@ public class Book extends Item {
 
   public static Optional<Book> findByIsbn(String isbn) {
     return find("isbn", isbn).firstResultOptional();
+  }
+
+  public static List<Book> findByLanguage(Language language) {
+    return find("language", language).list();
   }
 
   public static long deleteByIsbn(String isbn) {

@@ -30,6 +30,14 @@ public class PublisherService {
     return Publisher.findByIdOptional(id);
   }
 
+  public List<Publisher> findContainingName(String name) {
+    return Publisher.findContainingName(name);
+  }
+
+  public Optional<Publisher> findByName(String name) {
+    return Publisher.findByName(name);
+  }
+
   @Transactional(REQUIRED)
   public void deletePublisher(Long id) {
     Publisher.deleteById(id);
