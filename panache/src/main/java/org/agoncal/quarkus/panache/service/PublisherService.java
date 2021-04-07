@@ -5,6 +5,7 @@ import org.agoncal.quarkus.panache.model.Publisher;
 import javax.enterprise.context.ApplicationScoped;
 import javax.transaction.Transactional;
 import java.util.List;
+import java.util.Optional;
 
 import static javax.transaction.Transactional.TxType.REQUIRED;
 import static javax.transaction.Transactional.TxType.SUPPORTS;
@@ -25,8 +26,8 @@ public class PublisherService {
     return publishers;
   }
 
-  public Publisher findPublisherById(Long id) {
-    return Publisher.findById(id);
+  public Optional<Publisher> findPublisherById(Long id) {
+    return Publisher.findByIdOptional(id);
   }
 
   @Transactional(REQUIRED)

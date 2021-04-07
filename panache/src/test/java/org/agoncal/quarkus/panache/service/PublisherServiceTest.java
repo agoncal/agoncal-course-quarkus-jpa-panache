@@ -33,7 +33,7 @@ public class PublisherServiceTest {
     assertNotNull(publisher.id);
     assertEquals(initialCount + 1, service.countPublishers());
 
-    publisher = service.findPublisherById(publisher.id);
+    publisher = service.findPublisherById(publisher.id).get();
     assertEquals("AGoncal Fascicles", publisher.name);
 
     service.deletePublisher(publisher.id);

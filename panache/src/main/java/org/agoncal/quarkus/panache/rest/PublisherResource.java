@@ -1,10 +1,9 @@
 package org.agoncal.quarkus.panache.rest;
 
 import org.agoncal.quarkus.panache.model.Publisher;
+import org.agoncal.quarkus.panache.service.PublisherService;
 
 import javax.inject.Inject;
-import javax.persistence.EntityManager;
-import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -13,6 +12,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.Response;
 
 @Path("/api/publishers")
 @Produces(MediaType.APPLICATION_JSON)
@@ -20,32 +20,32 @@ import javax.ws.rs.core.MediaType;
 public class PublisherResource {
 
   @Inject
-  EntityManager em;
+  PublisherService publisherService;
 
   @POST
-  @Transactional
   public Publisher persistPublisher(Publisher publisher) {
-    em.persist(publisher);
+    publisherService.persistPublisher(publisher);
     return publisher;
   }
 
   @Path("/{id}")
   @GET
-  public Publisher findPublisherById(@PathParam("id") Long id) {
-    return em.find(Publisher.class, id);
+  public Response findPublisherById(@PathParam("id") Long id) {
+    return publisherService.findPublisherById(id)
+      .map(publisher -> Response.ok(publisher).build())
+      .orElse(Response.status(Response.Status.NOT_FOUND).build());
   }
 
   @Path("/count")
   @GET
   @Produces(MediaType.TEXT_PLAIN)
   public Long countPublishers() {
-    return em.createQuery("select count(p) from Publisher p", Long.class).getSingleResult();
+    return publisherService.countPublishers();
   }
 
   @Path("/{id}")
   @DELETE
-  @Transactional
   public void deletePublisher(@PathParam("id") Long id) {
-    em.remove(em.getReference(Publisher.class, id));
+    publisherService.deletePublisher(id);
   }
 }
