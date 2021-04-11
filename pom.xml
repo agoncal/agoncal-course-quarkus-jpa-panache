@@ -8,7 +8,7 @@
   <packaging>pom</packaging>
   <name>Building a Quarkus Application with JPA and Panache</name>
   <modules>
-    <module>legacy</module>
+    <module>jpa</module>
     <module>panache</module>
   </modules>
 </project>
