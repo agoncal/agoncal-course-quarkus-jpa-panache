@@ -1,6 +1,6 @@
 package org.agoncal.quarkus.jpa.rest;
 
-import org.agoncal.quarkus.jpa.model.Publisher;
+import org.agoncal.quarkus.jpa.model.Book;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
@@ -21,48 +21,48 @@ import java.util.List;
 
 import static javax.transaction.Transactional.TxType.SUPPORTS;
 
-@Path("/api/publishers")
+@Path("/api/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Transactional(SUPPORTS)
-public class PublisherResource {
+public class BookResource {
 
   @Inject
   Logger logger;
 
   @POST
   @Transactional
-  public Response persistPublisher(Publisher publisher, @Context UriInfo uriInfo) {
-    Publisher.persist(publisher);
-    URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(publisher.id)).build();
-    logger.info("New publisher created with URI " + uri.toString());
+  public Response persistBook(Book book, @Context UriInfo uriInfo) {
+    Book.persist(book);
+    URI uri = uriInfo.getAbsolutePathBuilder().path(Long.toString(book.id)).build();
+    logger.info("New book created with URI " + uri.toString());
     return Response.created(uri).build();
   }
 
   @GET
   @Path("/{id}")
-  public Response findPublisherById(@PathParam("id") Long id) {
-    return Publisher
+  public Response findBookById(@PathParam("id") Long id) {
+    return Book
       .findByIdOptional(id)
-      .map(publisher -> Response.ok(publisher).build())
+      .map(book -> Response.ok(book).build())
       .orElse(Response.status(Response.Status.NOT_FOUND).build());
   }
 
   @GET
-  public List<Publisher> findPublishers() {
-    return Publisher.listAll();
+  public List<Book> findBooks() {
+    return Book.listAll();
   }
 
   @GET
   @Path("/count")
-  public Long countPublishers() {
-    return Publisher.count();
+  public Long countBooks() {
+    return Book.count();
   }
 
   @DELETE
   @Transactional
   @Path("/{id}")
-  public void deletePublisher(@PathParam("id") Long id) {
-    Publisher.deleteById(id);
+  public void deleteBook(@PathParam("id") Long id) {
+    Book.deleteById(id);
   }
 }

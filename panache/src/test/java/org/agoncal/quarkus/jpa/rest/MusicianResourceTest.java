@@ -5,11 +5,13 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.jpa.model.Musician;
+import org.hamcrest.core.Is;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -35,6 +37,28 @@ public class MusicianResourceTest {
 
   private static int nbMusicians;
   private static String musicianId;
+
+  @Test
+  public void shouldFindAnExistingMusician() {
+    given()
+      .pathParam("id", 3001).
+    when()
+      .get("/api/musicians/{id}").
+    then()
+      .statusCode(Response.Status.OK.getStatusCode())
+      .body("firstName", Is.is("John"))
+      .body("lastName", Is.is("Lennon"));
+  }
+
+  @Test
+  public void shouldNotFindUnknownMusician() {
+    given()
+      .pathParam("id", 9999).
+    when()
+      .get("/api/musicians/{id}").
+    then()
+      .statusCode(Response.Status.NOT_FOUND.getStatusCode());
+  }
 
   @Test
   void shouldNotAddInvalidMusician() {

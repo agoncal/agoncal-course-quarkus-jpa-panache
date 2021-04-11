@@ -20,16 +20,18 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/authors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Transactional(SUPPORTS)
 public class AuthorResource {
 
   @Inject
   AuthorRepository repository;
   @Inject
   Logger logger;
-
 
   @POST
   @Transactional
@@ -42,8 +44,11 @@ public class AuthorResource {
 
   @GET
   @Path("/{id}")
-  public Author findAuthorById(@PathParam("id") Long id) {
-    return repository.findById(id);
+  public Response findAuthorById(@PathParam("id") Long id) {
+    return repository
+      .findByIdOptional(id)
+      .map(publisher -> Response.ok(publisher).build())
+      .orElse(Response.status(Response.Status.NOT_FOUND).build());
   }
 
   @GET

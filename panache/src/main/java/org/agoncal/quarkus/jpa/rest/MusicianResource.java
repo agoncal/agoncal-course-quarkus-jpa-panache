@@ -20,16 +20,18 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/musicians")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
+@Transactional(SUPPORTS)
 public class MusicianResource {
 
   @Inject
   MusicianRepository repository;
   @Inject
   Logger logger;
-
 
   @POST
   @Transactional
@@ -42,8 +44,11 @@ public class MusicianResource {
 
   @GET
   @Path("/{id}")
-  public Musician findMusicianById(@PathParam("id") Long id) {
-    return repository.findById(id);
+  public Response findMusicianById(@PathParam("id") Long id) {
+    return repository
+      .findByIdOptional(id)
+      .map(publisher -> Response.ok(publisher).build())
+      .orElse(Response.status(Response.Status.NOT_FOUND).build());
   }
 
   @GET

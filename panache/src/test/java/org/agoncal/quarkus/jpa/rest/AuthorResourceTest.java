@@ -5,11 +5,13 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.jpa.model.Author;
+import org.hamcrest.core.Is;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import javax.ws.rs.core.Response;
 import java.util.List;
 
 import static io.restassured.RestAssured.given;
@@ -35,6 +37,28 @@ public class AuthorResourceTest {
 
   private static int nbAuthors;
   private static String authorId;
+
+  @Test
+  public void shouldFindAnExistingAuthor() {
+    given()
+      .pathParam("id", 2001).
+    when()
+      .get("/api/authors/{id}").
+    then()
+      .statusCode(Response.Status.OK.getStatusCode())
+      .body("firstName", Is.is("Antonio"))
+      .body("lastName", Is.is("Goncalves"));
+  }
+
+  @Test
+  public void shouldNotFindUnknownAuthor() {
+    given()
+      .pathParam("id", 9999).
+    when()
+      .get("/api/authors/{id}").
+    then()
+      .statusCode(Response.Status.NOT_FOUND.getStatusCode());
+  }
 
   @Test
   void shouldNotAddInvalidAuthor() {
