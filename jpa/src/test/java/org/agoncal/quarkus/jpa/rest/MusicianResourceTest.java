@@ -45,7 +45,7 @@ public class MusicianResourceTest {
       .body(musician, ObjectMapperType.JSONB)
       .header(CONTENT_TYPE, APPLICATION_JSON).
     when()
-      .post("/jpa/musicians").
+      .post("/api/musicians").
     then()
       .statusCode(INTERNAL_SERVER_ERROR.getStatusCode());
   }
@@ -56,7 +56,7 @@ public class MusicianResourceTest {
     nbMusicians =
       given().
       when()
-        .get("/jpa/musicians/count").
+        .get("/api/musicians/count").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(Integer.class);
@@ -64,7 +64,7 @@ public class MusicianResourceTest {
     List<Musician> listMusicians =
       given().
       when()
-        .get("/jpa/musicians").
+        .get("/api/musicians").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getMusicianTypeRef());
@@ -91,13 +91,13 @@ public class MusicianResourceTest {
         .body(musician, ObjectMapperType.JSONB)
         .header(CONTENT_TYPE, APPLICATION_JSON).
       when()
-        .post("/jpa/musicians").
+        .post("/api/musicians").
       then()
         .statusCode(CREATED.getStatusCode())
         .extract().header("Location");
 
     // Extracts the Location and stores the book id
-    assertTrue(location.contains("/jpa/musicians"));
+    assertTrue(location.contains("/api/musicians"));
     String[] segments = location.split("/");
     musicianId = segments[segments.length - 1];
     assertNotNull(musicianId);
@@ -109,7 +109,7 @@ public class MusicianResourceTest {
     given()
       .pathParam("id", musicianId).
     when()
-      .get("/jpa/musicians/{id}").
+      .get("/api/musicians/{id}").
     then()
       .statusCode(OK.getStatusCode())
       .body("firstName", is(FIRST_NAME))
@@ -124,7 +124,7 @@ public class MusicianResourceTest {
       given()
         .header(ACCEPT, APPLICATION_JSON).
       when()
-        .get("/jpa/musicians/count").
+        .get("/api/musicians/count").
       then()
         .statusCode(OK.getStatusCode())
         .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -135,7 +135,7 @@ public class MusicianResourceTest {
     List<Musician> listMusicians =
       given().
       when()
-        .get("/jpa/musicians").
+        .get("/api/musicians").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getMusicianTypeRef());
@@ -150,7 +150,7 @@ public class MusicianResourceTest {
     given()
       .pathParam("id", musicianId).
     when()
-      .delete("/jpa/musicians/{id}").
+      .delete("/api/musicians/{id}").
     then()
       .statusCode(NO_CONTENT.getStatusCode());
   }
@@ -162,7 +162,7 @@ public class MusicianResourceTest {
       given()
         .header(ACCEPT, APPLICATION_JSON).
       when()
-        .get("/jpa/musicians/count").
+        .get("/api/musicians/count").
       then()
         .statusCode(OK.getStatusCode())
         .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -173,7 +173,7 @@ public class MusicianResourceTest {
     List<Musician> listMusicians =
       given().
       when()
-        .get("/jpa/musicians").
+        .get("/api/musicians").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getMusicianTypeRef());

@@ -20,7 +20,7 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-@Path("/jpa/authors")
+@Path("/api/authors")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 public class AuthorResource {

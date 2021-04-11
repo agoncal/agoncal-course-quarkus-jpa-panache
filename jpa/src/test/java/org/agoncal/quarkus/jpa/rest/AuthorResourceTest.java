@@ -45,7 +45,7 @@ public class AuthorResourceTest {
       .body(author, ObjectMapperType.JSONB)
       .header(CONTENT_TYPE, APPLICATION_JSON).
     when()
-      .post("/jpa/authors").
+      .post("/api/authors").
     then()
       .statusCode(INTERNAL_SERVER_ERROR.getStatusCode());
   }
@@ -56,7 +56,7 @@ public class AuthorResourceTest {
     nbAuthors =
       given().
       when()
-        .get("/jpa/authors/count").
+        .get("/api/authors/count").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(Integer.class);
@@ -64,7 +64,7 @@ public class AuthorResourceTest {
     List<Author> listAuthors =
       given().
       when()
-        .get("/jpa/authors").
+        .get("/api/authors").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getAuthorTypeRef());
@@ -91,13 +91,13 @@ public class AuthorResourceTest {
         .body(author, ObjectMapperType.JSONB)
         .header(CONTENT_TYPE, APPLICATION_JSON).
       when()
-        .post("/jpa/authors").
+        .post("/api/authors").
       then()
         .statusCode(CREATED.getStatusCode())
         .extract().header("Location");
 
     // Extracts the Location and stores the book id
-    assertTrue(location.contains("/jpa/authors"));
+    assertTrue(location.contains("/api/authors"));
     String[] segments = location.split("/");
     authorId = segments[segments.length - 1];
     assertNotNull(authorId);
@@ -109,7 +109,7 @@ public class AuthorResourceTest {
     given()
       .pathParam("id", authorId).
     when()
-      .get("/jpa/authors/{id}").
+      .get("/api/authors/{id}").
     then()
       .statusCode(OK.getStatusCode())
       .body("firstName", is(FIRST_NAME))
@@ -124,7 +124,7 @@ public class AuthorResourceTest {
       given()
         .header(ACCEPT, APPLICATION_JSON).
       when()
-        .get("/jpa/authors/count").
+        .get("/api/authors/count").
       then()
         .statusCode(OK.getStatusCode())
         .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -135,7 +135,7 @@ public class AuthorResourceTest {
     List<Author> listAuthors =
       given().
       when()
-        .get("/jpa/authors").
+        .get("/api/authors").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getAuthorTypeRef());
@@ -150,7 +150,7 @@ public class AuthorResourceTest {
     given()
       .pathParam("id", authorId).
     when()
-      .delete("/jpa/authors/{id}").
+      .delete("/api/authors/{id}").
     then()
       .statusCode(NO_CONTENT.getStatusCode());
   }
@@ -162,7 +162,7 @@ public class AuthorResourceTest {
       given()
         .header(ACCEPT, APPLICATION_JSON).
       when()
-        .get("/jpa/authors/count").
+        .get("/api/authors/count").
       then()
         .statusCode(OK.getStatusCode())
         .header(CONTENT_TYPE, APPLICATION_JSON)
@@ -173,7 +173,7 @@ public class AuthorResourceTest {
     List<Author> listAuthors =
       given().
       when()
-        .get("/jpa/authors").
+        .get("/api/authors").
       then()
         .statusCode(OK.getStatusCode())
         .extract().body().as(getAuthorTypeRef());
