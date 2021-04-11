@@ -6,14 +6,14 @@
 
   <persistence-unit name="vintageStorePU" transaction-type="JTA">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
-    <class>org.agoncal.quarkus.panache.model.Book</class>
-    <class>org.agoncal.quarkus.panache.model.CD</class>
-    <class>org.agoncal.quarkus.panache.model.Item</class>
-    <class>org.agoncal.quarkus.panache.model.Publisher</class>
-    <class>org.agoncal.quarkus.panache.model.Artist</class>
-    <class>org.agoncal.quarkus.panache.model.Author</class>
-    <class>org.agoncal.quarkus.panache.model.Musician</class>
-    <class>org.agoncal.quarkus.panache.model.Track</class>
+    <class>org.agoncal.quarkus.jpa.model.Book</class>
+    <class>org.agoncal.quarkus.jpa.model.CD</class>
+    <class>org.agoncal.quarkus.jpa.model.Item</class>
+    <class>org.agoncal.quarkus.jpa.model.Publisher</class>
+    <class>org.agoncal.quarkus.jpa.model.Artist</class>
+    <class>org.agoncal.quarkus.jpa.model.Author</class>
+    <class>org.agoncal.quarkus.jpa.model.Musician</class>
+    <class>org.agoncal.quarkus.jpa.model.Track</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.H2Dialect"/>
       <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
