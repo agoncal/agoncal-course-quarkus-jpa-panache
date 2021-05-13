@@ -1,6 +1,7 @@
 package org.agoncal.quarkus.orm.panache;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import io.quarkus.hibernate.orm.panache.PanacheEntityBase;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -42,10 +43,10 @@ public class Publisher extends PanacheEntity {
   // ======================================
 
   public static List<Publisher> findContainingName(String name) {
-    return PanacheEntityBase.find("SELECT p FROM Publisher p WHERE p.name LIKE '%?1%'", name).list();
+    return Publisher.find("SELECT p FROM Publisher p WHERE p.name LIKE '%?1%'", name).list();
   }
 
   public static Optional<Publisher> findByName(String name) {
-    return PanacheEntityBase.find("name", name).firstResultOptional();
+    return Publisher.find("name", name).firstResultOptional();
   }
 }

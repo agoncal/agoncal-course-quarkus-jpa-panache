@@ -1,6 +1,6 @@
 package org.agoncal.quarkus.orm.rest;
 
-import org.agoncal.quarkus.jpa.model.Book;
+import org.agoncal.quarkus.orm.panache.Book;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
@@ -19,12 +19,10 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-import static javax.transaction.Transactional.TxType.SUPPORTS;
-
 @Path("/api/books")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Transactional(TxType.SUPPORTS)
+@Transactional(Transactional.TxType.SUPPORTS)
 public class BookResource {
 
   @Inject

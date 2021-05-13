@@ -19,12 +19,10 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-import static javax.transaction.Transactional.TxType.SUPPORTS;
-
 @Path("/api/cds")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Transactional(TxType.SUPPORTS)
+@Transactional(Transactional.TxType.SUPPORTS)
 public class CDResource {
 
   @Inject

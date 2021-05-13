@@ -59,14 +59,14 @@ public class Book extends Item {
   // ======================================
 
   public static Optional<Book> findByIsbn(String isbn) {
-    return PanacheEntityBase.find("isbn", isbn).firstResultOptional();
+    return Book.find("isbn", isbn).firstResultOptional();
   }
 
   public static List<Book> findByLanguage(Language language) {
-    return PanacheEntityBase.find("language", language).list();
+    return Book.find("language", language).list();
   }
 
   public static long deleteByIsbn(String isbn) {
-    return PanacheEntityBase.delete("isbn", isbn);
+    return Book.delete("isbn", isbn);
   }
 }

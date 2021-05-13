@@ -1,6 +1,6 @@
 package org.agoncal.quarkus.orm.rest;
 
-import org.agoncal.quarkus.jpa.model.Musician;
+import org.agoncal.quarkus.orm.jpa.Musician;
 import org.agoncal.quarkus.orm.repository.MusicianRepository;
 import org.jboss.logging.Logger;
 
@@ -20,12 +20,10 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-import static javax.transaction.Transactional.TxType.SUPPORTS;
-
 @Path("/api/musicians")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
-@Transactional(TxType.SUPPORTS)
+@Transactional(Transactional.TxType.SUPPORTS)
 public class MusicianResource {
 
   @Inject
