@@ -1,7 +1,7 @@
 package org.agoncal.quarkus.orm.rest;
 
 import org.agoncal.quarkus.orm.jpa.Musician;
-import org.agoncal.quarkus.orm.repository.MusicianRepository;
+import org.agoncal.quarkus.orm.jpa.MusicianRepository;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;

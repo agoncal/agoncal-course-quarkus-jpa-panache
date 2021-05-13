@@ -1,0 +1,12 @@
+version: "3"
+services:
+  customers_database:
+    image: "mariadb:10.6.0"
+    container_name: "customers_database"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_customerspwd
+      - MYSQL_DATABASE=customers_database
+      - MYSQL_USER=customersuser
+      - MYSQL_PASSWORD=customerspwd

@@ -1,7 +1,7 @@
 package org.agoncal.quarkus.orm.rest;
 
 import org.agoncal.quarkus.orm.jpa.Author;
-import org.agoncal.quarkus.orm.repository.AuthorRepository;
+import org.agoncal.quarkus.orm.jpa.AuthorRepository;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
