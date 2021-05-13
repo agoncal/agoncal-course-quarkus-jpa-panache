@@ -1,4 +1,6 @@
-package org.agoncal.quarkus.orm.jdbc;
+package org.agoncal.quarkus.jdbc.repository;
+
+import org.agoncal.quarkus.jdbc.model.Customer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -8,6 +10,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.util.Random;
 
 @ApplicationScoped
 public class CustomerRepository {
@@ -18,6 +21,7 @@ public class CustomerRepository {
   public void persist(Customer customer) throws SQLException {
     Connection conn = dataSource.getConnection();
     String sql = "INSERT INTO T_CUSTOMER (id, first_name, last_name, email, created_date) VALUES (?, ?, ?, ?, ?)";
+    customer.setId(Math.abs(new Random().nextInt()));
 
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
       ps.setLong(1, customer.getId());

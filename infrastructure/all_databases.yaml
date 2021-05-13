@@ -4,7 +4,7 @@ services:
     image: "mariadb:10.6.0"
     container_name: "customers_database"
     ports:
-      - "3306:3306"
+      - "38701:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root_customerspwd
       - MYSQL_DATABASE=customers_database
@@ -14,7 +14,7 @@ services:
     image: "mysql:8.0.25"
     container_name: "artists_database"
     ports:
-      - "3307:3306"
+      - "38702:3306"
     environment:
       - MYSQL_ROOT_PASSWORD=root_artistspwd
       - MYSQL_DATABASE=artists_database
@@ -24,7 +24,7 @@ services:
     image: "postgres:13.2"
     container_name: "items_database"
     ports:
-      - "5432:5432"
+      - "38703:5432"
     environment:
       - POSTGRES_DB=items_database
       - POSTGRES_USER=itemsuser
