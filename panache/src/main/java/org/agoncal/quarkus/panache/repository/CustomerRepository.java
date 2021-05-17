@@ -1,6 +1,6 @@
 package org.agoncal.quarkus.panache.repository;
 
-import org.agoncal.quarkus.jdbc.model.Customer;
+import org.agoncal.quarkus.jdbc.Customer;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
@@ -17,7 +17,7 @@ import java.util.Random;
   name = "CustomerMapping",
   entities = {
     @EntityResult(
-      entityClass = org.agoncal.quarkus.jdbc.model.Customer.class
+      entityClass = Customer.class
 //      fields = {
 //        @FieldResult(name = "id", column = "employeeNumber"),
 //        @FieldResult(name = "name", column = "name")}

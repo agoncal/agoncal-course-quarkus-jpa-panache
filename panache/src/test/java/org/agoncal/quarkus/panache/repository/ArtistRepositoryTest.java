@@ -2,8 +2,7 @@ package org.agoncal.quarkus.panache.repository;
 
 import com.github.javafaker.Faker;
 import io.quarkus.test.junit.QuarkusTest;
-import org.agoncal.quarkus.jpa.model.Artist;
-import org.agoncal.quarkus.jpa.repository.ArtistRepository;
+import org.agoncal.quarkus.jpa.Artist;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;

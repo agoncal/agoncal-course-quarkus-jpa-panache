@@ -1,6 +1,4 @@
-package org.agoncal.quarkus.jpa.repository;
-
-import org.agoncal.quarkus.jpa.model.Artist;
+package org.agoncal.quarkus.jpa;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;

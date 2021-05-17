@@ -1,9 +1,5 @@
-package org.agoncal.quarkus.jpa.model;
+package org.agoncal.quarkus.jdbc;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 import java.time.Instant;
 
 /**
@@ -11,27 +7,28 @@ import java.time.Instant;
  * http://www.antoniogoncalves.org
  * --
  */
-@Entity
-public class Artist {
+public class Customer {
 
   // ======================================
   // =             Attributes             =
   // ======================================
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.AUTO)
-  private Long id;
+  private Integer id;
   private String firstName;
   private String lastName;
-  private String bio;
+  private String email;
   private Instant createdDate = Instant.now();
 
   // ======================================
   // =          Getters & Setters         =
   // ======================================
 
-  public Long getId() {
+  public Integer getId() {
     return id;
+  }
+
+  public void setId(Integer id) {
+    this.id = id;
   }
 
   public String getFirstName() {
@@ -50,12 +47,12 @@ public class Artist {
     this.lastName = lastName;
   }
 
-  public String getBio() {
-    return bio;
+  public String getEmail() {
+    return email;
   }
 
-  public void setBio(String bio) {
-    this.bio = bio;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public Instant getCreatedDate() {
@@ -68,11 +65,11 @@ public class Artist {
 
   @Override
   public String toString() {
-    return "Artist{" +
+    return "Customer{" +
       "id=" + id +
       ", firstName='" + firstName + '\'' +
       ", lastName='" + lastName + '\'' +
-      ", bio='" + bio + '\'' +
+      ", email='" + email + '\'' +
       ", createdDate=" + createdDate +
       '}';
   }

@@ -2,8 +2,8 @@ package org.agoncal.quarkus.orm.jdbc;
 
 import com.github.javafaker.Faker;
 import io.quarkus.test.junit.QuarkusTest;
-import org.agoncal.quarkus.jdbc.model.Customer;
-import org.agoncal.quarkus.jdbc.repository.CustomerRepository;
+import org.agoncal.quarkus.jdbc.Customer;
+import org.agoncal.quarkus.jdbc.CustomerRepository;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;

@@ -1,6 +1,4 @@
-package org.agoncal.quarkus.jdbc.repository;
-
-import org.agoncal.quarkus.jdbc.model.Customer;
+package org.agoncal.quarkus.jdbc;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
