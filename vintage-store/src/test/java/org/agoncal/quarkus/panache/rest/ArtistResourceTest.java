@@ -5,7 +5,7 @@ import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
-import org.agoncal.quarkus.jpa.Artist;
+import org.agoncal.quarkus.jdbc.Artist;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Disabled;import org.junit.jupiter.api.MethodOrderer;

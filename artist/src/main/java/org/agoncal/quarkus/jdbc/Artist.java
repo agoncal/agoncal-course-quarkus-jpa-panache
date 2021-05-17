@@ -7,7 +7,7 @@ import java.time.Instant;
  * http://www.antoniogoncalves.org
  * --
  */
-public class Customer {
+public class Artist {
 
   // ======================================
   // =             Attributes             =
@@ -16,12 +16,13 @@ public class Customer {
   private Long id;
   private String firstName;
   private String lastName;
-  private String email;
+  private String bio;
   private Instant createdDate = Instant.now();
 
   // ======================================
   // =          Getters & Setters         =
   // ======================================
+
 
   public Long getId() {
     return id;
@@ -47,12 +48,12 @@ public class Customer {
     this.lastName = lastName;
   }
 
-  public String getEmail() {
-    return email;
+  public String getBio() {
+    return bio;
   }
 
-  public void setEmail(String email) {
-    this.email = email;
+  public void setBio(String bio) {
+    this.bio = bio;
   }
 
   public Instant getCreatedDate() {
@@ -65,11 +66,11 @@ public class Customer {
 
   @Override
   public String toString() {
-    return "Customer{" +
+    return "Artist{" +
       "id=" + id +
       ", firstName='" + firstName + '\'' +
       ", lastName='" + lastName + '\'' +
-      ", email='" + email + '\'' +
+      ", bio='" + bio + '\'' +
       ", createdDate=" + createdDate +
       '}';
   }

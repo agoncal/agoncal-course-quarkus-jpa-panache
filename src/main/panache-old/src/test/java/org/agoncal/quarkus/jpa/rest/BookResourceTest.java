@@ -1,10 +1,10 @@
-package org.agoncal.quarkus.jpa.rest;
+package org.agoncal.quarkus.jdbc.rest;
 //@formatter:off
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.mapper.ObjectMapperType;
-import org.agoncal.quarkus.jpa.model.Book;
-import org.agoncal.quarkus.jpa.model.Language;
+import org.agoncal.quarkus.jdbc.model.Book;
+import org.agoncal.quarkus.jdbc.model.Language;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

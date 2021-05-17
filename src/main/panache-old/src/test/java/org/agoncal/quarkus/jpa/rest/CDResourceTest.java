@@ -1,10 +1,10 @@
-package org.agoncal.quarkus.jpa.rest;
+package org.agoncal.quarkus.jdbc.rest;
 //@formatter:off
 
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
-import org.agoncal.quarkus.jpa.model.CD;
+import org.agoncal.quarkus.jdbc.model.CD;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;

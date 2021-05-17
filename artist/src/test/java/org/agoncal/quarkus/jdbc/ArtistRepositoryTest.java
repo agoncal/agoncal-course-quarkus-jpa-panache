@@ -1,10 +1,11 @@
-package org.agoncal.quarkus.jpa;
+package org.agoncal.quarkus.jdbc;
 
 import com.github.javafaker.Faker;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
+import java.sql.SQLException;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -17,7 +18,7 @@ public class ArtistRepositoryTest {
   private Faker faker = new Faker();
 
   @Test
-  public void shouldCreateAndFindAnArtist() {
+  public void shouldCreateAndFindAnArtist() throws SQLException {
     Artist artist = new Artist();
     artist.setFirstName(faker.name().firstName());
     artist.setLastName(faker.name().lastName());

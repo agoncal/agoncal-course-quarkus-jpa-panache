@@ -12,7 +12,7 @@ import java.time.Instant;
  * --
  */
 @Entity
-public class Artist {
+public class Customer {
 
   // ======================================
   // =             Attributes             =
@@ -23,7 +23,7 @@ public class Artist {
   private Long id;
   private String firstName;
   private String lastName;
-  private String bio;
+  private String email;
   private Instant createdDate = Instant.now();
 
   // ======================================
@@ -50,29 +50,25 @@ public class Artist {
     this.lastName = lastName;
   }
 
-  public String getBio() {
-    return bio;
+  public String getEmail() {
+    return email;
   }
 
-  public void setBio(String bio) {
-    this.bio = bio;
+  public void setEmail(String email) {
+    this.email = email;
   }
 
   public Instant getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(Instant createdDate) {
-    this.createdDate = createdDate;
-  }
-
   @Override
   public String toString() {
-    return "Artist{" +
+    return "Customer{" +
       "id=" + id +
       ", firstName='" + firstName + '\'' +
       ", lastName='" + lastName + '\'' +
-      ", bio='" + bio + '\'' +
+      ", email='" + email + '\'' +
       ", createdDate=" + createdDate +
       '}';
   }
