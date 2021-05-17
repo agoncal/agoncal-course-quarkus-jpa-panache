@@ -1,0 +1,12 @@
+version: "3"
+services:
+  artists_database:
+    image: "mysql:8.0.25"
+    container_name: "artists_database"
+    ports:
+      - "3306:3306"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root_artistspwd
+      - MYSQL_DATABASE=artists_database
+      - MYSQL_USER=artistsuser
+      - MYSQL_PASSWORD=artistspwd
