@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -25,17 +26,7 @@ public class Publisher extends PanacheEntity {
   @Column(length = 30)
   @NotNull
   public String name;
-
-  // ======================================
-  // =            Constructors            =
-  // ======================================
-
-  public Publisher() {
-  }
-
-  public Publisher(String name) {
-    this.name = name;
-  }
+  public Instant createdDate = Instant.now();
 
   // ======================================
   // =              Methods               =
@@ -53,6 +44,7 @@ public class Publisher extends PanacheEntity {
   public String toString() {
     return "Publisher{" +
       "name='" + name + '\'' +
+      ", createdDate=" + createdDate +
       ", id=" + id +
       '}';
   }

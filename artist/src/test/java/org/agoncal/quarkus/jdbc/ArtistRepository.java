@@ -18,7 +18,7 @@ public class ArtistRepository {
 
   public void persist(Artist artist) throws SQLException {
     Connection conn = dataSource.getConnection();
-    String sql = "INSERT INTO t_artist (id, first_name, last_name, bio, created_date) VALUES (?, ?, ?, ?, ?)";
+    String sql = "INSERT INTO t_artists (id, first_name, last_name, bio, created_date) VALUES (?, ?, ?, ?, ?)";
     artist.setId(Math.abs(new Random().nextLong()));
 
     try (PreparedStatement ps = conn.prepareStatement(sql)) {
@@ -34,7 +34,7 @@ public class ArtistRepository {
 
   public Artist findById(Long id) throws SQLException {
     Connection conn = dataSource.getConnection();
-    String sql = "SELECT id, first_name, last_name, bio, created_date FROM t_artist WHERE id = ?";
+    String sql = "SELECT id, first_name, last_name, bio, created_date FROM t_artists WHERE id = ?";
     Artist artist = new Artist();
 
     try (PreparedStatement ps = conn.prepareStatement(sql)) {

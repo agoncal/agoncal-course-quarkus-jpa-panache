@@ -8,6 +8,8 @@ import org.junit.jupiter.api.Test;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 
+import java.util.Random;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
@@ -22,6 +24,7 @@ public class ArtistRepositoryTest {
   @Transactional
   public void shouldCreateAndFindAnArtist() {
     Artist artist = new Artist();
+    artist.setId(Math.abs(new Random().nextLong()));
     artist.setFirstName(faker.name().firstName());
     artist.setLastName(faker.name().lastName());
     artist.setBio(faker.lorem().paragraph());

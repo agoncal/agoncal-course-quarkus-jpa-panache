@@ -23,7 +23,6 @@ public class CustomerRepositoryTest {
   @Transactional
   public void shouldCreateAndFindACustomer() {
     Customer customer = new Customer();
-    customer.setId((long) Math.abs(new Random().nextInt()));
     customer.setFirstName(faker.name().firstName());
     customer.setLastName(faker.name().lastName());
     customer.setEmail(faker.internet().emailAddress());
