@@ -28,12 +28,12 @@ public class Track extends PanacheEntity {
   @NotNull
   public Duration duration;
 
+  @ManyToOne(fetch = FetchType.LAZY)
+  public CD cd;
+
   @Column(name = "created_date", nullable = false)
   @NotNull
   public Instant createdDate = Instant.now();
-
-  @ManyToOne(fetch = FetchType.LAZY)
-  public CD cd;
 
   // ======================================
   // =            Constructors            =

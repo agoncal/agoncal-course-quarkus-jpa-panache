@@ -54,5 +54,4 @@ public class ArtistRepositoryTest {
       repository.persist(artist);
     }
   }
-
 }
