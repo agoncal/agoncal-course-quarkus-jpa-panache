@@ -1,15 +1,14 @@
 package org.agoncal.quarkus.panache.rest;
 //@formatter:off
 
+import com.github.javafaker.Faker;
 import io.quarkus.test.junit.QuarkusTest;
-import io.restassured.RestAssured;
 import io.restassured.common.mapper.TypeRef;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.jdbc.Artist;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;
-import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Disabled;import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -19,30 +18,32 @@ import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import java.util.List;
 
+import static io.restassured.RestAssured.given;
 import static javax.ws.rs.core.Response.Status.INTERNAL_SERVER_ERROR;
 import static javax.ws.rs.core.Response.Status.OK;
 
-@QuarkusTest @Disabled
+@QuarkusTest
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ArtistResourceTest {
 
-  private static final String NAME = "Name";
-  private static final String BIO = "Bio";
+  private static Faker faker = new Faker();
+  private static final String NAME = faker.book().author();
+  private static final String BIO = faker.lorem().paragraph(1);
 
-  private static int nbAuthors;
+  private static Long nbAuthors;
   private static String authorId;
 
-  @Test
+  @Test @Disabled
   void shouldNotAddInvalidAuthor() {
     Artist artist = new Artist();
     artist.setName(null);
 
-    RestAssured.given()
+    given()
       .body(artist, ObjectMapperType.JSONB)
       .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON).
-      when()
-      .post("/api/authors").
-      then()
+    when()
+      .post("/api/artists").
+    then()
       .statusCode(INTERNAL_SERVER_ERROR.getStatusCode());
   }
 
@@ -50,20 +51,20 @@ public class ArtistResourceTest {
   @Order(1)
   void shouldCountInitialAuthors() {
     nbAuthors =
-      RestAssured.given().
+      given().
         when()
-        .get("/api/authors/count").
+          .get("/api/artists/count").
         then()
-        .statusCode(OK.getStatusCode())
-        .extract().body().as(Integer.class);
+          .statusCode(OK.getStatusCode())
+          .extract().body().as(Long.class);
 
     List<Artist> listAuthors =
-      RestAssured.given().
+      given().
         when()
-        .get("/api/authors").
+          .get("/api/artists").
         then()
-        .statusCode(Response.Status.OK.getStatusCode())
-        .extract().body().as(getAuthorTypeRef());
+          .statusCode(Response.Status.OK.getStatusCode())
+          .extract().body().as(getAuthorTypeRef());
 
     Assertions.assertEquals(nbAuthors, listAuthors.size());
   }
@@ -82,17 +83,17 @@ public class ArtistResourceTest {
 
     // Persists a new artist
     String location =
-      RestAssured.given()
+      given()
         .body(artist, ObjectMapperType.JSONB)
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON).
-        when()
-        .post("/api/authors").
-        then()
+      when()
+        .post("/api/artists").
+      then()
         .statusCode(Response.Status.CREATED.getStatusCode())
         .extract().header("Location");
 
     // Extracts the Location and stores the book id
-    Assertions.assertTrue(location.contains("/api/authors"));
+    Assertions.assertTrue(location.contains("/api/artists"));
     String[] segments = location.split("/");
     authorId = segments[segments.length - 1];
     Assertions.assertNotNull(authorId);
@@ -101,10 +102,10 @@ public class ArtistResourceTest {
   @Test
   @Order(3)
   void shouldFindCreatedAuthor() {
-    RestAssured.given()
+    given()
       .pathParam("id", authorId).
-      when()
-      .get("/api/authors/{id}").
+    when()
+    .get("/api/artists/{id}").
       then()
       .statusCode(Response.Status.OK.getStatusCode())
       .body("name", Is.is(NAME))
@@ -114,25 +115,25 @@ public class ArtistResourceTest {
   @Test
   @Order(4)
   void shouldCountCreatedAuthor() {
-    int authors =
-      RestAssured.given()
+    Long authors =
+      given()
         .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON).
-        when()
-        .get("/api/authors/count").
-        then()
+      when()
+        .get("/api/artists/count").
+      then()
         .statusCode(Response.Status.OK.getStatusCode())
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-        .extract().body().as(Integer.class);
+        .extract().body().as(Long.class);
 
     Assertions.assertEquals(nbAuthors + 1, authors);
 
     List<Artist> listAuthors =
-      RestAssured.given().
+      given().
         when()
-        .get("/api/authors").
+          .get("/api/artists").
         then()
-        .statusCode(Response.Status.OK.getStatusCode())
-        .extract().body().as(getAuthorTypeRef());
+         .statusCode(Response.Status.OK.getStatusCode())
+         .extract().body().as(getAuthorTypeRef());
 
     Assertions.assertEquals(authors, listAuthors.size());
   }
@@ -141,33 +142,33 @@ public class ArtistResourceTest {
   @Order(5)
   void shouldRemoveCreatedAuthor() {
     // Deletes the previously created book
-    RestAssured.given()
+    given()
       .pathParam("id", authorId).
-      when()
-      .delete("/api/authors/{id}").
-      then()
+    when()
+      .delete("/api/artists/{id}").
+    then()
       .statusCode(Response.Status.NO_CONTENT.getStatusCode());
   }
 
   @Test
   @Order(6)
   void shouldCountRemovedAuthor() {
-    int authors =
-      RestAssured.given()
+    Long authors =
+      given()
         .header(HttpHeaders.ACCEPT, MediaType.APPLICATION_JSON).
         when()
-        .get("/api/authors/count").
+        .get("/api/artists/count").
         then()
         .statusCode(Response.Status.OK.getStatusCode())
         .header(HttpHeaders.CONTENT_TYPE, MediaType.APPLICATION_JSON)
-        .extract().body().as(Integer.class);
+        .extract().body().as(Long.class);
 
     Assertions.assertEquals(nbAuthors, authors);
 
     List<Artist> listAuthors =
-      RestAssured.given().
+      given().
         when()
-        .get("/api/authors").
+        .get("/api/artists").
         then()
         .statusCode(Response.Status.OK.getStatusCode())
         .extract().body().as(getAuthorTypeRef());
