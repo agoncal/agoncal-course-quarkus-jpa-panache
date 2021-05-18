@@ -8,7 +8,8 @@ import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.jdbc.Artist;
 import org.hamcrest.core.Is;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Disabled;import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
@@ -25,8 +26,7 @@ import static javax.ws.rs.core.Response.Status.OK;
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ArtistResourceTest {
 
-  private static final String FIRST_NAME = "First name";
-  private static final String LAST_NAME = "Last name";
+  private static final String NAME = "Name";
   private static final String BIO = "Bio";
 
   private static int nbAuthors;
@@ -35,7 +35,7 @@ public class ArtistResourceTest {
   @Test
   void shouldNotAddInvalidAuthor() {
     Artist artist = new Artist();
-    artist.setFirstName(null);
+    artist.setName(null);
 
     RestAssured.given()
       .body(artist, ObjectMapperType.JSONB)
@@ -77,8 +77,7 @@ public class ArtistResourceTest {
   @Order(2)
   void shouldAddANewAuthor() {
     Artist artist = new Artist();
-    artist.setFirstName(FIRST_NAME);
-    artist.setLastName(LAST_NAME);
+    artist.setName(NAME);
     artist.setBio(BIO);
 
     // Persists a new artist
@@ -108,8 +107,7 @@ public class ArtistResourceTest {
       .get("/api/authors/{id}").
       then()
       .statusCode(Response.Status.OK.getStatusCode())
-      .body("firstName", Is.is(FIRST_NAME))
-      .body("lastName", Is.is(LAST_NAME))
+      .body("name", Is.is(NAME))
       .body("bio", Is.is(BIO));
   }
 

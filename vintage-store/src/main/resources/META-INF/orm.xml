@@ -4,18 +4,20 @@
                  version="2.0">
 
   <entity class="org.agoncal.quarkus.jdbc.Artist">
-    <table name="t_artist"/>
-  </entity>
-
-  <entity class="org.agoncal.quarkus.jpa.Customer">
-    <table name="t_customer"/>
+    <table name="t_artists"/>
     <attributes>
-      <id name="id"/>
-      <basic name="firstName"/>
-      <basic name="lastName"/>
-      <basic name="email"/>
-      <basic name="createdDate"/>
+      <id name="id">
+        <generated-value strategy="AUTO"/>
+      </id>
+      <basic name="name">
+        <column length="100" nullable="false"/>
+      </basic>
+      <basic name="bio">
+        <column length="3000"/>
+      </basic>
+      <basic name="createdDate">
+        <column name="created_date" nullable="false"/>
+      </basic>
     </attributes>
   </entity>
-
 </entity-mappings>

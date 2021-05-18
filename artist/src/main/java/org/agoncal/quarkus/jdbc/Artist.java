@@ -14,8 +14,7 @@ public class Artist {
   // ======================================
 
   private Long id;
-  private String firstName;
-  private String lastName;
+  private String name;
   private String bio;
   private Instant createdDate = Instant.now();
 
@@ -32,20 +31,12 @@ public class Artist {
     this.id = id;
   }
 
-  public String getFirstName() {
-    return firstName;
+  public String getName() {
+    return name;
   }
 
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
+  public void setName(String name) {
+    this.name = name;
   }
 
   public String getBio() {
@@ -68,8 +59,7 @@ public class Artist {
   public String toString() {
     return "Artist{" +
       "id=" + id +
-      ", firstName='" + firstName + '\'' +
-      ", lastName='" + lastName + '\'' +
+      ", name='" + name + '\'' +
       ", bio='" + bio + '\'' +
       ", createdDate=" + createdDate +
       '}';

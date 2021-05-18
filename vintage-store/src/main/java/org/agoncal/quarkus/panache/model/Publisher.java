@@ -23,9 +23,12 @@ public class Publisher extends PanacheEntity {
   // =             Attributes             =
   // ======================================
 
-  @Column(length = 30)
+  @Column(length = 50, nullable = false)
   @NotNull
   public String name;
+
+  @Column(name = "created_date", nullable = false)
+  @NotNull
   public Instant createdDate = Instant.now();
 
   // ======================================

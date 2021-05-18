@@ -3,9 +3,9 @@ package org.agoncal.quarkus.panache.model;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -23,12 +23,21 @@ public class CD extends Item {
   @Column(name = "music_company")
   public String musicCompany;
 
+  @Column(length = 100)
   public String genre;
 
-  @JoinColumn(name = "cd_fk")
-  @OneToMany(cascade = {CascadeType.REMOVE, CascadeType.PERSIST})
-  public List<Track> tracks;
+  @OneToMany(mappedBy = "cd", cascade = {CascadeType.REMOVE, CascadeType.PERSIST}, orphanRemoval = true)
+  public List<Track> tracks = new ArrayList<>();
 
+  public void addTrack(Track track) {
+    tracks.add(track);
+    track.cd = this;
+  }
+
+  public void removeTrack(Track track) {
+    tracks.remove(track);
+    track.cd = null;
+  }
   // ======================================
   // =            Constructors            =
   // ======================================

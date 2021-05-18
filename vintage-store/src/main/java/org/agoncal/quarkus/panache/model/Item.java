@@ -1,11 +1,15 @@
 package org.agoncal.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
+import org.agoncal.quarkus.jdbc.Artist;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -25,12 +29,22 @@ public class Item extends PanacheEntity {
   // =             Attributes             =
   // ======================================
 
+  @Column(length = 100, nullable = false)
   @NotNull
   public String title;
 
   @Column(length = 3000)
   public String description;
 
+  @Column(nullable = false)
+  @NotNull
   public BigDecimal price;
+
+  @ManyToOne(cascade = CascadeType.PERSIST)
+  @JoinColumn(name = "artist_fk")
+  public Artist artist;
+
+  @Column(name = "created_date", nullable = false)
+  @NotNull
   public Instant createdDate = Instant.now();
 }

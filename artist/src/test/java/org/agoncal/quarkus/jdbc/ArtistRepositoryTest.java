@@ -20,8 +20,7 @@ public class ArtistRepositoryTest {
   @Test
   public void shouldCreateAndFindAnArtist() throws SQLException {
     Artist artist = new Artist();
-    artist.setFirstName(faker.name().firstName());
-    artist.setLastName(faker.name().lastName());
+    artist.setName(faker.name().name());
     artist.setBio(faker.lorem().paragraph());
 
     repository.persist(artist);
@@ -29,8 +28,7 @@ public class ArtistRepositoryTest {
     artist = repository.findById(artist.getId());
 
     assertNotNull(artist.getId());
-    assertNotNull(artist.getFirstName());
-    assertNotNull(artist.getLastName());
+    assertNotNull(artist.getName());
     assertNotNull(artist.getBio());
     assertNotNull(artist.getCreatedDate());
   }
