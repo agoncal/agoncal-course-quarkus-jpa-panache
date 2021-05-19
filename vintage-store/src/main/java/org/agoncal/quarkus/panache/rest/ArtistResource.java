@@ -1,5 +1,6 @@
 package org.agoncal.quarkus.panache.rest;
 
+import io.quarkus.panache.common.Sort;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import org.agoncal.quarkus.jdbc.Artist;
@@ -10,11 +11,13 @@ import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
+import javax.ws.rs.DefaultValue;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -38,16 +41,20 @@ public class ArtistResource {
 
   @GET
   @Path("show/{id}")
-  @Produces(MediaType.TEXT_PLAIN)
+  @Produces(MediaType.TEXT_HTML)
   public TemplateInstance showArtistById(@PathParam("id") Long id) {
     return Templates.artist(repository.findById(id));
   }
 
   @GET
   @Path("show")
-  @Produces(MediaType.TEXT_PLAIN)
-  public TemplateInstance showAllArtists() {
-    return Templates.artists(repository.listAll());
+  @Produces(MediaType.TEXT_HTML)
+  public TemplateInstance showAllArtists(@QueryParam("query") String query, @QueryParam("sort") @DefaultValue("id") String sort, @QueryParam("page") @DefaultValue("0") Integer pageIndex, @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
+    return Templates.artists(repository.find(query, Sort.by(sort)).page(pageIndex, pageSize).list())
+      .data("query", query)
+      .data("sort", sort)
+      .data("pageIndex", pageIndex)
+      .data("pageSize", pageSize);
   }
 
   @Inject

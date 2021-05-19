@@ -96,7 +96,8 @@ public class PurchaseOrderRepositoryTest {
         orderLine.quantity = faker.number().numberBetween(1, 5);
         purchaseOrder.addOrderLine(orderLine);
       }
-      // Finds a Customer
+      // Finds a
+      purchaseOrder.date = LocalDate.now().minusDays(faker.number().numberBetween(1, 1_000));
       purchaseOrder.customer = customerRepository.findById(faker.number().numberBetween(1L, 1_000L));
 
       // Persists the PurchaseOrder and OrderLines

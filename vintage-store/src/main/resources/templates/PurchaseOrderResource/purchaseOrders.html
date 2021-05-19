@@ -1,6 +1,7 @@
 {#include base.html}
-{#title}Purchase Orders{/title}
+{#title}{purchaseOrders.size} Purchase Orders{/title}
 {#body}
+<code>PurchaseOrder.find({data:query}, Sort.by({data:sort})).page({data:pageIndex}, {data:pageSize}).list()</code>
 <table class="table">
   <thead>
   <tr>

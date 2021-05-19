@@ -1,6 +1,7 @@
 {#include base.html}
-{#title}Books{/title}
+{#title}{books.size} Books{/title}
 {#body}
+<code>Book.find({data:query}, Sort.by({data:sort})).page({data:pageIndex}, {data:pageSize}).list()</code>
 <table class="table">
   <thead>
   <tr>
