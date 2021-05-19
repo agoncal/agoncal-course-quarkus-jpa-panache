@@ -1,0 +1,36 @@
+{#include base.html}
+{#title}Customer {customer.id}{/title}
+{#body}
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Id</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{customer.id}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">First Name</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{customer.firstName}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Last Name</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{customer.lastName}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Email</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{customer.email}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Created Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{customer.createdDate}">
+  </div>
+</div>
+<a class="btn btn-primary" href="http://localhost:8080/api/customers/show" role="button">Back to Customers</a>
+{/body}
+{/include}

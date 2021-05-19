@@ -1,0 +1,29 @@
+{#include base.html}
+{#title}CDs{/title}
+{#body}
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Title</th>
+    <th scope="col">Genre</th>
+    <th scope="col">Price</th>
+    <th scope="col">Music Company</th>
+    <th scope="col">Artist</th>
+  </tr>
+  </thead>
+  <tbody>
+  {#for cd in cds}
+  <tr>
+    <th scope="row"><a href="http://localhost:8080/api/items/cds/show/{cd.id}">{cd.id}</a></th>
+    <td>{cd.title}</td>
+    <td>{cd.genre}</td>
+    <td>{cd.price}</td>
+    <td>{cd.musicCompany}</td>
+    <td><a href="http://localhost:8080/api/artists/show/{cd.artist.id}">{cd.artist.name}</a></td>
+  </tr>
+  {/for}
+  </tbody>
+</table>
+{/body}
+{/include}

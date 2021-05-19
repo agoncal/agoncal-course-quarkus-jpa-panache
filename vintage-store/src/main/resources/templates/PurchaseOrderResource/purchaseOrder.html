@@ -1,0 +1,52 @@
+{#include base.html}
+{#title}Purchase Order {purchaseOrder.id}{/title}
+{#body}
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Id</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{purchaseOrder.id}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{purchaseOrder.date}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Customer</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{purchaseOrder.customer.firstName} {purchaseOrder.customer.lastName}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Created Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{purchaseOrder.createdDate}">
+  </div>
+</div>
+<h2>Order Lines</h2>
+<table class="table">
+  <thead>
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Item</th>
+    <th scope="col">Price</th>
+    <th scope="col">Quantity</th>
+  </tr>
+  </thead>
+  <tbody>
+  {#for orderLine in purchaseOrder.orderLines}
+  <tr>
+    <th scope="row">{orderLine.id}</th>
+    <td>{orderLine.item.title}</td>
+    <td>{orderLine.item.price}</td>
+    <td>{orderLine.quantity}</td>
+  </tr>
+  {/for}
+  </tbody>
+</table>
+<a class="btn btn-primary" href="http://localhost:8080/api/purchase-orders/show" role="button">Back to Purchase Orders</a>
+{/body}
+{/include}
+

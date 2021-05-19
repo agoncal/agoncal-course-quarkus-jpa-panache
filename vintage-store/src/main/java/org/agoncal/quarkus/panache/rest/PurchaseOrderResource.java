@@ -3,6 +3,7 @@ package org.agoncal.quarkus.panache.rest;
 import io.quarkus.qute.CheckedTemplate;
 import io.quarkus.qute.TemplateInstance;
 import org.agoncal.quarkus.panache.model.Publisher;
+import org.agoncal.quarkus.panache.model.PurchaseOrder;
 import org.jboss.logging.Logger;
 
 import javax.inject.Inject;
@@ -21,31 +22,31 @@ import javax.ws.rs.core.UriInfo;
 import java.net.URI;
 import java.util.List;
 
-@Path("/api/publishers")
+@Path("/api/purchase-orders")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @Transactional(Transactional.TxType.SUPPORTS)
-public class PublisherResource {
+public class PurchaseOrderResource {
 
   @CheckedTemplate
   public static class Templates {
-    public static native TemplateInstance publisher(Publisher publisher);
+    public static native TemplateInstance purchaseOrder(PurchaseOrder purchaseOrder);
 
-    public static native TemplateInstance publishers(List<Publisher> publishers);
+    public static native TemplateInstance purchaseOrders(List<PurchaseOrder> purchaseOrders);
   }
 
   @GET
   @Path("show/{id}")
   @Produces(MediaType.TEXT_PLAIN)
-  public TemplateInstance showArtistById(@PathParam("id") Long id) {
-    return Templates.publisher(Publisher.findById(id));
+  public TemplateInstance showPurchaseOrderById(@PathParam("id") Long id) {
+    return Templates.purchaseOrder(PurchaseOrder.findById(id));
   }
 
   @GET
   @Path("show")
   @Produces(MediaType.TEXT_PLAIN)
-  public TemplateInstance showAllArtists() {
-    return Templates.publishers(Publisher.listAll());
+  public TemplateInstance showAllPurchaseOrder() {
+    return Templates.purchaseOrders(PurchaseOrder.listAll());
   }
 
 

@@ -1,14 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Artist</title>
-</head>
-<body>
-<h1>Artist {artist.id}</h1>
-<div>Id: {artist.id}</div>
-<div>Name: {artist.name}</div>
-<div>Bio: {artist.bio}</div>
-<div>Created date: {artist.createdDate}</div>
-</body>
-</html>
+{#include base.html}
+{#title}Artist {artist.id}{/title}
+{#body}
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Id</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{artist.id}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Name</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{artist.name}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Bio</label>
+  <div class="col-sm-10">
+    <textarea readonly class="form-control">{artist.bio}</textarea>
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Created Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{artist.createdDate}">
+  </div>
+</div>
+<a class="btn btn-primary" href="http://localhost:8080/api/artists/show" role="button">Back to Artists</a>
+{/body}
+{/include}

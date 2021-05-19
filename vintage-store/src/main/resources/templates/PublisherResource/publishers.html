@@ -1,5 +1,5 @@
 {#include base.html}
-{#title}Artists{/title}
+{#title}Publishers{/title}
 {#body}
 <table class="table">
   <thead>
@@ -9,10 +9,10 @@
   </tr>
   </thead>
   <tbody>
-  {#for artist in artists}
+  {#for publisher in publishers}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/artists/show/{artist.id}">{artist.id}</a></th>
-    <td>{artist.name}</td>
+    <th scope="row"><a href="http://localhost:8080/api/publishers/show/{publisher.id}">{publisher.id}</a></th>
+    <td>{publisher.name}</td>
   </tr>
   {/for}
   </tbody>

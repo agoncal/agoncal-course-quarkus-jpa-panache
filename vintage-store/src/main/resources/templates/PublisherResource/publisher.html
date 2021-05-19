@@ -1,0 +1,25 @@
+{#include base.html}
+{#title}Publisher {publisher.id}{/title}
+{#body}
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Id</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{publisher.id}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Name</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{publisher.name}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Created Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{publisher.createdDate}">
+  </div>
+</div>
+<a class="btn btn-primary" href="http://localhost:8080/api/publishers/show" role="button">Back to Publishers</a>
+{/body}
+{/include}
+

@@ -36,9 +36,6 @@ public class ArtistResource {
     public static native TemplateInstance artists(List<Artist> artists);
   }
 
-  @Inject
-  ArtistRepository repository;
-
   @GET
   @Path("show/{id}")
   @Produces(MediaType.TEXT_PLAIN)
@@ -52,6 +49,9 @@ public class ArtistResource {
   public TemplateInstance showAllArtists() {
     return Templates.artists(repository.listAll());
   }
+
+  @Inject
+  ArtistRepository repository;
 
   @GET
   @Path("{id}")

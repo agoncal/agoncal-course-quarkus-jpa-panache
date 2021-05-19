@@ -1,0 +1,42 @@
+{#include base.html}
+{#title}CD {cd.id}{/title}
+{#body}
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Id</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{cd.id}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Title</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{cd.title}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Description</label>
+  <div class="col-sm-10">
+    <textarea readonly class="form-control">{cd.description}</textarea>
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Price</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{cd.price}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Artist</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{cd.artist.name}">
+  </div>
+</div>
+<div class="row mb-3">
+  <label class="col-sm-2 col-form-label">Created Date</label>
+  <div class="col-sm-10">
+    <input type="text" readonly class="form-control" value="{cd.createdDate}">
+  </div>
+</div>
+<a class="btn btn-primary" href="http://localhost:8080/api/books/show" role="button">Back to Books</a>
+{/body}
+{/include}
