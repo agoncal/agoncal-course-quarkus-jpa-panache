@@ -14,7 +14,7 @@
   <tbody>
   {#for customer in customers}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/customers/show/{customer.id}">{customer.id}</a></th>
+    <th scope="row"><a href="http://localhost:8080/api/customers/{customer.id}">{customer.id}</a></th>
     <td>{customer.firstName}</td>
     <td>{customer.lastName}</td>
     <td>{customer.email}</td>

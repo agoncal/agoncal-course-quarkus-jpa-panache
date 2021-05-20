@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.Duration;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
@@ -15,6 +16,8 @@ public class TrackRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindATrack() {
+    long nbTracks = Track.count();
+
     // Creates a Track
     Track track = new Track();
     track.title = "title";
@@ -22,11 +25,16 @@ public class TrackRepositoryTest {
 
     // Persists the Track
     Track.persist(track);
+    assertNotNull(track.id);
+
+    assertEquals(nbTracks + 1, Track.count());
 
     // Gets the Track
     track = Track.findById(track.id);
+    assertEquals("title", track.title);
 
-    // Checks the Track
-    assertNotNull(track.id);
+    // Deletes the Track
+    Track.deleteById(track.id);
+    assertEquals(nbTracks, Track.count());
   }
 }

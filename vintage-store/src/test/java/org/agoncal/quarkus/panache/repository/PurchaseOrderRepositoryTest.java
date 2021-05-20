@@ -23,10 +23,19 @@ public class PurchaseOrderRepositoryTest {
 
   @Inject
   CustomerRepository customerRepository;
+  @Inject
+  ArtistRepository artistRepository;
 
   @Test
   @TestTransaction
   public void shouldCreateAndFindAPurchaseOrder() {
+    long nbCustomers = customerRepository.count();
+    long nbArtists = artistRepository.count();
+    long nbPublishers = Publisher.count();
+    long nbBooks = Book.count();
+    long nbPurchaseOrders = PurchaseOrder.count();
+    long nbOrderLines = OrderLine.count();
+
     // Creates a Customer
     Customer customer = new Customer();
     customer.setFirstName("first name");
@@ -46,7 +55,7 @@ public class PurchaseOrderRepositoryTest {
     book.price = new BigDecimal(10);
     book.isbn = "ISBN";
     book.nbOfPages = 500;
-    book.publicationDate = LocalDate.now();
+    book.publicationDate = LocalDate.now().minusDays(100);
     book.language = Language.ENGLISH;
     // Sets the Publisher and Artist to the Book
     book.publisher = publisher;
@@ -65,13 +74,26 @@ public class PurchaseOrderRepositoryTest {
 
     // Persists the PurchaseOrder and one OrderLine
     PurchaseOrder.persist(purchaseOrder);
+    assertNotNull(purchaseOrder.id);
+    assertEquals(1, purchaseOrder.orderLines.size());
 
-    // Gets the Book
+    assertEquals(nbCustomers + 1, customerRepository.count());
+    assertEquals(nbArtists + 1, artistRepository.count());
+    assertEquals(nbPublishers + 1, Publisher.count());
+    assertEquals(nbBooks + 1, Book.count());
+    assertEquals(nbPurchaseOrders + 1, PurchaseOrder.count());
+    assertEquals(nbOrderLines + 1, OrderLine.count());
+
+    // Gets the PurchaseOrder
     purchaseOrder = PurchaseOrder.findById(purchaseOrder.id);
 
-    // Checks the PurchaseOrder
-    assertNotNull(purchaseOrder.id);
-    // Checks the OrderLine
-    assertEquals(1, purchaseOrder.orderLines.size());
+    // Deletes the PurchaseOrder
+    PurchaseOrder.deleteById(purchaseOrder.id);
+    assertEquals(nbCustomers + 1, customerRepository.count());
+    assertEquals(nbArtists + 1, artistRepository.count());
+    assertEquals(nbPublishers + 1, Publisher.count());
+    assertEquals(nbBooks + 1, Book.count());
+    assertEquals(nbPurchaseOrders, PurchaseOrder.count());
+    assertEquals(nbOrderLines, OrderLine.count());
   }
 }

@@ -12,7 +12,7 @@
   <tbody>
   {#for artist in artists}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/artists/show/{artist.id}">{artist.id}</a></th>
+    <th scope="row"><a href="http://localhost:8080/api/artists/{artist.id}">{artist.id}</a></th>
     <td>{artist.name}</td>
   </tr>
   {/for}

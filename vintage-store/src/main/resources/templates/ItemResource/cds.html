@@ -16,12 +16,12 @@
   <tbody>
   {#for cd in cds}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/items/cds/show/{cd.id}">{cd.id}</a></th>
+    <th scope="row"><a href="http://localhost:8080/api/items/cds/{cd.id}">{cd.id}</a></th>
     <td>{cd.title}</td>
     <td>{cd.genre}</td>
     <td>{cd.price}</td>
     <td>{cd.musicCompany}</td>
-    <td><a href="http://localhost:8080/api/artists/show/{cd.artist.id}">{cd.artist.name}</a></td>
+    <td><a href="http://localhost:8080/api/artists/{cd.artist.id}">{cd.artist.name}</a></td>
   </tr>
   {/for}
   </tbody>

@@ -7,6 +7,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
@@ -18,14 +19,25 @@ public class ArtistRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindAnArtist() {
+    long nbArtists = repository.count();
+
+    // Creates an Artist
     Artist artist = new Artist();
     artist.setName("name");
     artist.setBio("bio");
 
+    // Persists the Artist
     repository.persist(artist);
-
-    artist = repository.findById(artist.getId());
-
     assertNotNull(artist.getId());
+
+    assertEquals(nbArtists + 1, repository.count());
+
+    // Gets the Artists
+    artist = repository.findById(artist.getId());
+    assertEquals("name", artist.getName());
+
+    // Deletes the Artist
+    repository.deleteById(artist.getId());
+    assertEquals(nbArtists, repository.count());
   }
 }

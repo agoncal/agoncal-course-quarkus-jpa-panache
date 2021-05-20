@@ -23,7 +23,8 @@ public class FillUpDatabase {
   public static final int NB_PURCHASE_ORDERS = 50;
 
   public static void main(String[] args) throws IOException {
-    fileWriter = new FileWriter("import.sql");
+//    fileWriter = new FileWriter("import.sql");
+    fileWriter = new FileWriter("../vintage-store/src/main/resources/import.sql");
     printWriter = new PrintWriter(fileWriter);
 
     fillsUpTheDatabase();

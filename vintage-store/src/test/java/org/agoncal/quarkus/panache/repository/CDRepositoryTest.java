@@ -23,6 +23,10 @@ public class CDRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindACD() {
+    long nbArtists = artistRepository.count();
+    long nbTracks = Track.count();
+    long nbCDs = CD.count();
+
     // Creates an Artist
     Artist artist = new Artist();
     artist.setName("name");
@@ -48,15 +52,22 @@ public class CDRepositoryTest {
 
     // Persists the CD with two Tracks and one Artist
     CD.persist(cd);
+    assertNotNull(cd.id);
+    assertEquals(2, cd.tracks.size());
+    assertNotNull(cd.artist.getId());
+
+    assertEquals(nbArtists + 1, artistRepository.count());
+    assertEquals(nbTracks + 2, Track.count());
+    assertEquals(nbCDs + 1, CD.count());
 
     // Gets the CD
     cd = CD.findById(cd.id);
+    assertEquals("title", cd.title);
 
-    // Checks the CD
-    assertNotNull(cd.id);
-    // Checks the Tracks
-    assertEquals(2, cd.tracks.size());
-    // Checks the Artist
-    assertNotNull(cd.artist.getId());
+    // Deletes the CD
+    CD.deleteById(cd.id);
+    assertEquals(nbArtists + 1, artistRepository.count());
+    assertEquals(nbTracks, Track.count());
+    assertEquals(nbCDs, CD.count());
   }
 }
