@@ -5,6 +5,7 @@ import io.quarkus.hibernate.orm.panache.PanacheEntity;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
@@ -28,6 +29,7 @@ public class Track extends PanacheEntity {
   @NotNull
   public Duration duration;
 
+  @JoinColumn(name = "cd_fk")
   @ManyToOne(fetch = FetchType.LAZY)
   public CD cd;
 

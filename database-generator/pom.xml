@@ -35,6 +35,9 @@
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>exec-maven-plugin</artifactId>
         <version>${exec-plugin.version}</version>
+        <configuration>
+          <mainClass>org.agoncal.quarkus.FillUpDatabase</mainClass>
+        </configuration>
       </plugin>
     </plugins>
   </build>
