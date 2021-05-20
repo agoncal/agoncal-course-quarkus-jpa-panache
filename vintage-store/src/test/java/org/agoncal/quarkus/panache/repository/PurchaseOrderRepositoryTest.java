@@ -1,21 +1,17 @@
 package org.agoncal.quarkus.panache.repository;
 
-import com.github.javafaker.Faker;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.agoncal.quarkus.jdbc.Artist;
 import org.agoncal.quarkus.jpa.Customer;
 import org.agoncal.quarkus.panache.model.Book;
-import org.agoncal.quarkus.panache.model.Item;
 import org.agoncal.quarkus.panache.model.Language;
 import org.agoncal.quarkus.panache.model.OrderLine;
 import org.agoncal.quarkus.panache.model.Publisher;
 import org.agoncal.quarkus.panache.model.PurchaseOrder;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
@@ -28,31 +24,29 @@ public class PurchaseOrderRepositoryTest {
   @Inject
   CustomerRepository customerRepository;
 
-  private static Faker faker = new Faker();
-
   @Test
   @TestTransaction
   public void shouldCreateAndFindAPurchaseOrder() {
     // Creates a Customer
     Customer customer = new Customer();
-    customer.setFirstName(faker.name().firstName());
-    customer.setLastName(faker.name().lastName());
-    customer.setEmail(faker.internet().emailAddress());
+    customer.setFirstName("first name");
+    customer.setLastName("last name");
+    customer.setEmail("email");
     // Creates an Artist
     Artist artist = new Artist();
-    artist.setName(faker.book().author());
-    artist.setBio(faker.lorem().paragraph());
+    artist.setName("name");
+    artist.setBio("bio");
     // Creates a Publisher
     Publisher publisher = new Publisher();
-    publisher.name = faker.book().publisher();
+    publisher.name = "name";
     // Creates a Book
     Book book = new Book();
-    book.title = faker.book().title();
-    book.description = faker.lorem().paragraph();
-    book.price = new BigDecimal(faker.number().numberBetween(1, 100));
-    book.isbn = faker.code().isbn13();
-    book.nbOfPages = faker.number().numberBetween(10, 800);
-    book.publicationDate = LocalDate.now().minusDays(faker.number().numberBetween(100, 10_000));
+    book.title = "title";
+    book.description = "description";
+    book.price = new BigDecimal(10);
+    book.isbn = "ISBN";
+    book.nbOfPages = 500;
+    book.publicationDate = LocalDate.now();
     book.language = Language.ENGLISH;
     // Sets the Publisher and Artist to the Book
     book.publisher = publisher;
@@ -63,7 +57,7 @@ public class PurchaseOrderRepositoryTest {
     // Creates a PurchaseOrder with an OrderLine
     OrderLine orderLine = new OrderLine();
     orderLine.item = book;
-    orderLine.quantity = faker.number().numberBetween(1, 5);
+    orderLine.quantity = 2;
     PurchaseOrder purchaseOrder = new PurchaseOrder();
     // Sets the Customer, Publisher, Artist and Book to the Purchase Order
     purchaseOrder.customer = customer;
@@ -77,31 +71,7 @@ public class PurchaseOrderRepositoryTest {
 
     // Checks the PurchaseOrder
     assertNotNull(purchaseOrder.id);
-    assertNotNull(purchaseOrder.createdDate);
     // Checks the OrderLine
     assertEquals(1, purchaseOrder.orderLines.size());
-  }
-
-  @Test
-  @Disabled
-  @Transactional
-  public void shouldFillUpTheDatabase() {
-    for (int i = 0; i < 100; i++) {
-      PurchaseOrder purchaseOrder = new PurchaseOrder();
-
-      for (int j = 0; j < faker.number().numberBetween(1, 5); j++) {
-        OrderLine orderLine = new OrderLine();
-        // Finds an Item
-        orderLine.item = Item.findById(faker.number().numberBetween(1L, 2_000L));
-        orderLine.quantity = faker.number().numberBetween(1, 5);
-        purchaseOrder.addOrderLine(orderLine);
-      }
-      // Finds a
-      purchaseOrder.date = LocalDate.now().minusDays(faker.number().numberBetween(1, 1_000));
-      purchaseOrder.customer = customerRepository.findById(faker.number().numberBetween(1L, 1_000L));
-
-      // Persists the PurchaseOrder and OrderLines
-      PurchaseOrder.persist(purchaseOrder);
-    }
   }
 }
