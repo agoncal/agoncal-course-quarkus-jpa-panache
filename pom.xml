@@ -10,5 +10,6 @@
     <module>artist</module>
     <module>customer</module>
     <module>vintage-store</module>
+    <module>database-generator</module>
   </modules>
 </project>
