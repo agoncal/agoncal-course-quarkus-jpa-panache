@@ -1,10 +1,10 @@
 package org.agoncal.quarkus.jpa;
 
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
-import javax.transaction.Transactional;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -15,7 +15,7 @@ public class CustomerRepositoryTest {
   CustomerRepository repository;
 
   @Test
-  @Transactional
+  @TestTransaction
   public void shouldCreateAndFindACustomer() {
     Customer customer = new Customer();
     customer.setFirstName("first name");
