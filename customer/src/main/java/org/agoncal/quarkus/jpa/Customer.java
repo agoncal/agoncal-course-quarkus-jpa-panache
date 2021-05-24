@@ -46,6 +46,19 @@ public class Customer {
   private Instant createdDate = Instant.now();
 
   // ======================================
+  // =            Constructors            =
+  // ======================================
+
+  public Customer() {
+  }
+
+  public Customer(String firstName, String lastName, String email) {
+    this.firstName = firstName;
+    this.lastName = lastName;
+    this.email = email;
+  }
+
+  // ======================================
   // =          Getters & Setters         =
   // ======================================
 

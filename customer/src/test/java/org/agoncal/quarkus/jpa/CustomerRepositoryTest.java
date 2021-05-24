@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import javax.inject.Inject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @QuarkusTest
@@ -17,15 +18,12 @@ public class CustomerRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindACustomer() {
-    Customer customer = new Customer();
-    customer.setFirstName("first name");
-    customer.setLastName("last name");
-    customer.setEmail("email");
+    Customer customer = new Customer("first name", "last name", "email");
 
     repository.persist(customer);
+    assertNotNull(customer.getId());
 
     customer = repository.findById(customer.getId());
-
-    assertNotNull(customer.getId());
+    assertEquals("last name", customer.getLastName());
   }
 }

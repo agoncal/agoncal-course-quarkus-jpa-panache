@@ -19,9 +19,20 @@ public class Artist {
   private Instant createdDate = Instant.now();
 
   // ======================================
-  // =          Getters & Setters         =
+  // =            Constructors            =
   // ======================================
 
+  public Artist() {
+  }
+
+  public Artist(String name, String bio) {
+    this.name = name;
+    this.bio = bio;
+  }
+
+  // ======================================
+  // =          Getters & Setters         =
+  // ======================================
 
   public Long getId() {
     return id;
