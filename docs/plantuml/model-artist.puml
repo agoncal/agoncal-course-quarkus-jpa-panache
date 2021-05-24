@@ -1,0 +1,20 @@
+@startuml
+!include style.iuml
+hide methods
+hide fields
+
+class Artist {
+  - id: Long
+  - name: String
+  - bio: String
+  - createdDate: Instant
+  + getId(): Long
+  + setId(Long): void
+  + getName(): String
+  + setName(String): void
+  + getBio(): String
+  + setBio(String): void
+  + getCreatedDate(): Instant
+  + setCreatedDate(Instant): void
+}
+@enduml

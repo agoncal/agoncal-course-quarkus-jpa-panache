@@ -1,0 +1,47 @@
+@startuml
+!include style.iuml
+hide methods
+hide fields
+
+class Publisher <<PanacheEntity>> {
+  + name: String
+  + createdDate: Instant
+}
+class Item <<PanacheEntity>> {
+  + title: String
+  + description: String
+  + price: BigDecimal
+  + createdDate: Instant
+}
+class Book {
+  + isbn: String
+  + nbOfPages: Integer
+  + publicationDate: LocalDate
+}
+class CD {
+  + musicCompany: String
+  + genre: String
+}
+class Track <<PanacheEntity>> {
+  + title: String
+  + duration: Duration
+  + createdDate: Instant
+}
+enum Language {}
+class PurchaseOrder <<PanacheEntity>> {
+  + date: LocalDate
+  + createdDate: Instant
+}
+class OrderLine <<PanacheEntity>> {
+  + quantity: Integer
+  + createdDate: Instant
+}
+
+Item <|-- Book
+Item <|-- CD
+Book --> "1" Publisher
+Book --> "1" Language
+CD "1" *-- "*" Track
+PurchaseOrder "1  " *- " *" OrderLine
+OrderLine -> "1" Item
+@enduml

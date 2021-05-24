@@ -1,0 +1,11 @@
+@startuml
+!include style.iuml
+
+class PanacheEntity {
+}
+class Publisher <<Entity>> {
+  + name: String
+  + createdDate: Instant
+}
+PanacheEntity <|-- Publisher
+@enduml

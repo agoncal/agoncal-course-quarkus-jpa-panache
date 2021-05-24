@@ -1,0 +1,21 @@
+@startuml
+!include style.iuml
+hide methods
+hide fields
+
+class Customer <<Entity>> {
+  - id: Long <<@Id>> <<@GeneratedValue>>
+  - firstName: String
+  - lastName: String
+  - email: String
+  - createdDate: Instant
+  + getId(): Long
+  + getFirstName(): String
+  + setFirstName(String): void
+  + getLastName(): String
+  + setLastName(String): void
+  + getEmail(): String
+  + setEmail(String): void
+  + getCreatedDate(): Instant
+}
+@enduml
