@@ -5,8 +5,8 @@ class Publisher <<Entity>> {
   + name: String
 }
 
-abstract class PanacheEntity <<@MappedSuperclass>> {
-  + id: Long <<@Id>> <<@GeneratedValue>>
+abstract class PanacheEntity <<MappedSuperclass>> {
+  + id: Long <<Id>> <<GeneratedValue>>
 }
 
 abstract class PanacheEntityBase {

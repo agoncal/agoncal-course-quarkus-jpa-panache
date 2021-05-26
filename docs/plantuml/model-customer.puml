@@ -4,7 +4,7 @@ hide methods
 hide fields
 
 class Customer <<Entity>> {
-  - id: Long <<@Id>> <<@GeneratedValue>>
+  - id: Long <<Id>> <<GeneratedValue>>
   - firstName: String
   - lastName: String
   - email: String

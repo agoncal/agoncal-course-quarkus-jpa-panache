@@ -1,0 +1,18 @@
+@startuml
+!include style.iuml
+
+abstract class PanacheEntityBase {
+  + getEntityManager(): EntityManager
+  + {static} persist(Object): void
+  + {static} findById(Object): <T extends PanacheEntityBase>
+}
+class PanacheEntity {
+  + id: Long <<Id>> <<GeneratedValue>>
+}
+class Publisher <<Entity>> {
+  + name: String
+  + createdDate: Instant
+}
+PanacheEntityBase <|-- PanacheEntity
+PanacheEntity <|-- Publisher
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+!include style.iuml
+
+class PanacheEntity {
+  + id: Long <<Id>> <<GeneratedValue>>
+}
+class Publisher <<Entity>> {
+  + name: String
+  + createdDate: Instant
+}
+PanacheEntity <|-- Publisher
+@enduml
