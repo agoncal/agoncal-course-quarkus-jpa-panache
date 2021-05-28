@@ -1,4 +1,4 @@
-package org.agoncal.quarkus.panache.rest;
+package org.agoncal.quarkus.panache.page;
 
 import io.quarkus.panache.common.Sort;
 import io.quarkus.qute.CheckedTemplate;
@@ -17,10 +17,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/api/customers")
+@Path("/page/customers")
 @Produces(MediaType.TEXT_HTML)
 @ApplicationScoped
-public class CustomerResource {
+public class CustomerPage {
 
   @Inject
   CustomerRepository repository;

@@ -17,13 +17,13 @@
   <tbody>
   {#for book in books}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/items/books/{book.id}">{book.id}</a></th>
+    <th scope="row"><a href="http://localhost:8080/page/items/books/{book.id}">{book.id}</a></th>
     <td>{book.title}</td>
     <td>{book.isbn}</td>
     <td>{book.nbOfPages}</td>
     <td>{book.price}</td>
     <td>{book.language}</td>
-    <td><a href="http://localhost:8080/api/artists/{book.artist.id}">{book.artist.name}</a></td>
+    <td><a href="http://localhost:8080/page/artists/{book.artist.id}">{book.artist.name}</a></td>
   </tr>
   {/for}
   </tbody>

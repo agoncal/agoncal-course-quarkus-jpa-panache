@@ -1,4 +1,4 @@
-package org.agoncal.quarkus.panache.rest;
+package org.agoncal.quarkus.panache.page;
 
 import io.quarkus.panache.common.Sort;
 import io.quarkus.qute.CheckedTemplate;
@@ -15,10 +15,10 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 import java.util.List;
 
-@Path("/api/purchase-orders")
+@Path("/page/purchase-orders")
 @Produces(MediaType.TEXT_HTML)
 @ApplicationScoped
-public class PurchaseOrderResource {
+public class PurchaseOrderPage {
 
   @CheckedTemplate
   public static class Templates {

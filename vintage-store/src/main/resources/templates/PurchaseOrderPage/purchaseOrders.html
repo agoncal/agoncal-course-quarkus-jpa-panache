@@ -13,9 +13,9 @@
   <tbody>
   {#for purchaseOrder in purchaseOrders}
   <tr>
-    <th scope="row"><a href="http://localhost:8080/api/purchase-orders/{purchaseOrder.id}">{purchaseOrder.id}</a></th>
+    <th scope="row"><a href="http://localhost:8080/page/purchase-orders/{purchaseOrder.id}">{purchaseOrder.id}</a></th>
     <td>{purchaseOrder.date}</td>
-    <td><a href="http://localhost:8080/api/customers/{purchaseOrder.customer.id}">{purchaseOrder.customer.firstName} {purchaseOrder.customer.lastName}</a></td>
+    <td><a href="http://localhost:8080/page/customers/{purchaseOrder.customer.id}">{purchaseOrder.customer.firstName} {purchaseOrder.customer.lastName}</a></td>
   </tr>
   {/for}
   </tbody>
