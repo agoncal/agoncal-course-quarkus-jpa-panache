@@ -14,7 +14,6 @@ abstract class PanacheEntityBase {
   + flush(): void
   + isPersistent(): boolean
   + persist(): void
-  + persistAndFlush(): void
   + {static} deleteAll(): long
   + {static} deleteById(Object id): boolean
   + {static} findById(Object id): PanacheEntityBase

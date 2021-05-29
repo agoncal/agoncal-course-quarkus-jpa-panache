@@ -30,6 +30,10 @@ public class Artist {
     this.bio = bio;
   }
 
+  public Artist(String name) {
+    this.name = name;
+  }
+
   // ======================================
   // =          Getters & Setters         =
   // ======================================

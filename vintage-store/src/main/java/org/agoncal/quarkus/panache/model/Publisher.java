@@ -32,6 +32,17 @@ public class Publisher extends PanacheEntity {
   public Instant createdDate = Instant.now();
 
   // ======================================
+  // =           Constructors             =
+  // ======================================
+
+  public Publisher(String name) {
+    this.name = name;
+  }
+
+  public Publisher() {
+  }
+
+  // ======================================
   // =              Methods               =
   // ======================================
 

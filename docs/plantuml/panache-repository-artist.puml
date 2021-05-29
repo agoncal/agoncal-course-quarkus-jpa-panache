@@ -1,9 +1,10 @@
 @startuml
 !include style.iuml
 
-class PublisherRepository <<@ApplicationScoped>> {
-  + findByName(String name): Optional<Publisher>
-  + deleteByName(String name): long
+class Artist {
+}
+
+class ArtistRepository {
 }
 
 interface PanacheRepository {
@@ -23,7 +24,7 @@ interface PanacheRepositoryBase {
   {method} ...
 }
 
-PanacheRepository <|-- PublisherRepository
+PanacheRepository <|-- ArtistRepository
 PanacheRepositoryBase <|-- PanacheRepository
-
+ArtistRepository -> Artist
 @enduml
