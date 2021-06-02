@@ -9,7 +9,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 
 /**
@@ -26,7 +25,6 @@ public class OrderLine extends PanacheEntity {
   public Item item;
 
   @Column(nullable = false)
-  @NotNull
   public Integer quantity;
 
   @ManyToOne(fetch = FetchType.EAGER)
@@ -34,7 +32,6 @@ public class OrderLine extends PanacheEntity {
   public PurchaseOrder purchaseOrder;
 
   @Column(name = "created_date", nullable = false)
-  @NotNull
   public Instant createdDate = Instant.now();
 
 }

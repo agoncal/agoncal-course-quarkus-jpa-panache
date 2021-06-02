@@ -8,7 +8,6 @@ import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Objects;
@@ -22,11 +21,9 @@ public class Track extends PanacheEntity {
   // ======================================
 
   @Column(nullable = false)
-  @NotNull
   public String title;
 
   @Column(nullable = false)
-  @NotNull
   public Duration duration;
 
   @JoinColumn(name = "cd_fk")
@@ -34,7 +31,6 @@ public class Track extends PanacheEntity {
   public CD cd;
 
   @Column(name = "created_date", nullable = false)
-  @NotNull
   public Instant createdDate = Instant.now();
 
   // ======================================

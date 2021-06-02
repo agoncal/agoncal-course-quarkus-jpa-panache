@@ -10,7 +10,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -36,7 +35,6 @@ public class PurchaseOrder extends PanacheEntity {
   public Customer customer;
 
   @Column(name = "created_date", nullable = false)
-  @NotNull
   public Instant createdDate = Instant.now();
 
   public void addOrderLine(OrderLine orderLine) {

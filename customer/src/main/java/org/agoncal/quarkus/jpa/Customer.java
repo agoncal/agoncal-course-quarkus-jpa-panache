@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Size;
 import java.time.Instant;
 
 /**
@@ -28,21 +26,15 @@ public class Customer {
   private Long id;
 
   @Column(name = "first_name", length = 50, nullable = false)
-  @NotNull
-  @Size(min = 2, max = 50)
   private String firstName;
 
   @Column(name = "last_name", length = 50, nullable = false)
-  @NotNull
-  @Size(min = 2, max = 50)
   private String lastName;
 
   @Column(name = "e_mail", nullable = false)
-  @NotNull
   private String email;
 
   @Column(name = "created_date", nullable = false)
-  @NotNull
   private Instant createdDate = Instant.now();
 
   // ======================================

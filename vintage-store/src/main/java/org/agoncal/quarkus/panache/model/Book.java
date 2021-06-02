@@ -7,7 +7,6 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Past;
 import java.time.LocalDate;
 
 /**
@@ -29,7 +28,6 @@ public class Book extends Item {
   public Integer nbOfPages;
 
   @Column(name = "publication_date")
-  @Past
   public LocalDate publicationDate;
 
   @Column(length = 20)

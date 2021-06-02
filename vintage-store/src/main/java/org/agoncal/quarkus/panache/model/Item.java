@@ -11,7 +11,6 @@ import javax.persistence.InheritanceType;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
-import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.Instant;
 
@@ -30,14 +29,12 @@ public class Item extends PanacheEntity {
   // ======================================
 
   @Column(length = 100, nullable = false)
-  @NotNull
   public String title;
 
   @Column(length = 3000)
   public String description;
 
   @Column(nullable = false)
-  @NotNull
   public BigDecimal price;
 
   @ManyToOne(cascade = CascadeType.PERSIST)
@@ -45,6 +42,5 @@ public class Item extends PanacheEntity {
   public Artist artist;
 
   @Column(name = "created_date", nullable = false)
-  @NotNull
   public Instant createdDate = Instant.now();
 }

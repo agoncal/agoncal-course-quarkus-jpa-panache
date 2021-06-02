@@ -1,0 +1,17 @@
+@startuml
+!include style.iuml
+left to right direction
+hide methods
+hide fields
+
+class ArtistPage <<Path>>
+class CustomerPage <<Path>>
+class ItemPage <<Path>>
+class PublisherPage <<Path>>
+class PurchaseOrderPage <<Path>>
+
+ArtistPage-[hidden]-CustomerPage
+CustomerPage-[hidden]-ItemPage
+PublisherPage-[hidden]-PurchaseOrderPage
+
+@enduml

@@ -1,9 +1,8 @@
 @startuml
 !include style.iuml
-hide methods
-hide fields
 
-class Artist {
+
+class Artist <<POJO>>{
   - id: Long
   - name: String
   - bio: String
