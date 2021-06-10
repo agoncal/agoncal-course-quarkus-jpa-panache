@@ -4,7 +4,6 @@ package org.agoncal.quarkus.panache.resource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.jdbc.Artist;
-import org.hamcrest.core.Is;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -21,6 +20,7 @@ import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
 import static javax.ws.rs.core.Response.Status.OK;
+import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -61,8 +61,8 @@ class ArtistResourceTest {
   @Order(2)
   void shouldCreateANewArtist() {
     Artist artist = new Artist();
-    artist.setName("persisted name");
-    artist.setBio("persisted bio");
+    artist.setName("name");
+    artist.setBio("bio");
 
     String location =
       given()
@@ -109,8 +109,8 @@ class ArtistResourceTest {
     then()
       .statusCode(OK.getStatusCode())
       .header(CONTENT_TYPE, APPLICATION_JSON)
-      .body("name", Is.is("persisted name"))
-      .body("bio", Is.is("persisted bio"));
+      .body("name", is("name"))
+      .body("bio", is("bio"));
   }
 
   @Test

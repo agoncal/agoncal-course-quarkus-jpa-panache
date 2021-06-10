@@ -2,6 +2,7 @@ package org.agoncal.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
@@ -28,6 +29,7 @@ public class Track extends PanacheEntity {
 
   @JoinColumn(name = "cd_fk")
   @ManyToOne(fetch = FetchType.LAZY)
+  @JsonbTransient
   public CD cd;
 
   @Column(name = "created_date", nullable = false)
