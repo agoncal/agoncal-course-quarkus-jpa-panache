@@ -1,0 +1,13 @@
+@startuml
+!include style.iuml
+left to right direction
+hide methods
+hide fields
+
+class ArtistResource <<Path>>
+class CustomerResource <<Path>>
+class ItemResource <<Path>>
+class PublisherResource <<Path>>
+class PurchaseOrderResource <<Path>>
+
+@enduml
