@@ -2,6 +2,7 @@ package org.agoncal.quarkus.panache.model;
 
 import io.quarkus.hibernate.orm.panache.PanacheEntity;
 
+import javax.json.bind.annotation.JsonbTransient;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -29,6 +30,7 @@ public class OrderLine extends PanacheEntity {
 
   @ManyToOne(fetch = FetchType.EAGER)
   @JoinColumn(name = "purchase_order_fk")
+  @JsonbTransient
   public PurchaseOrder purchaseOrder;
 
   @Column(name = "created_date", nullable = false)

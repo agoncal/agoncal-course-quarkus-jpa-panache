@@ -23,7 +23,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
 import static javax.ws.rs.core.Response.Status.OK;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.hasKey;import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -122,7 +122,9 @@ class ItemResourceTest {
       .body("title", is("title"))
       .body("description", is("description"))
       .body("isbn", is("ISBN"))
-      .body("nbOfPages", is(500));
+      .body("nbOfPages", is(500))
+      .body("$", hasKey("id"))
+      .body("$", hasKey("createdDate"));
   }
 
   @Test
@@ -236,7 +238,9 @@ class ItemResourceTest {
       .body("title", is("title"))
       .body("description", is("description"))
       .body("musicCompany", is("music company"))
-      .body("genre", is("genre"));
+      .body("genre", is("genre"))
+      .body("$", hasKey("id"))
+      .body("$", hasKey("createdDate"));
   }
 
   @Test

@@ -20,7 +20,7 @@ import static javax.ws.rs.core.Response.Status.CREATED;
 import static javax.ws.rs.core.Response.Status.NOT_FOUND;
 import static javax.ws.rs.core.Response.Status.NO_CONTENT;
 import static javax.ws.rs.core.Response.Status.OK;
-import static org.hamcrest.core.Is.is;
+import static org.hamcrest.Matchers.hasKey;import static org.hamcrest.core.Is.is;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -112,8 +112,9 @@ class CustomerResourceTest {
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .body("firstName", is("first name"))
       .body("lastName", is("last name"))
-      .body("email", is("email"));
-  }
+      .body("email", is("email"))
+      .body("$", hasKey("id"))
+      .body("$", hasKey("createdDate"));  }
 
   @Test
   @Order(5)
