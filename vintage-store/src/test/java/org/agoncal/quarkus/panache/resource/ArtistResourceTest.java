@@ -107,7 +107,7 @@ class ArtistResourceTest {
       .pathParam("id", artistId).
     when()
       .get("/api/artists/{id}").
-    then().log().all()
+    then()
       .statusCode(OK.getStatusCode())
       .header(CONTENT_TYPE, APPLICATION_JSON)
       .body("name", is("name"))
