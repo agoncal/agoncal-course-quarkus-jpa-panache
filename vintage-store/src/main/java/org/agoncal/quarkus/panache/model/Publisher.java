@@ -44,7 +44,7 @@ public class Publisher extends PanacheEntity {
   // ======================================
 
   public static List<Publisher> findContainingName(String name) {
-    return Publisher.find("SELECT p FROM Publisher p WHERE p.name LIKE '%?1%'", name).list();
+    return Publisher.list("name like ?1", "%" + name + "%");
   }
 
   public static Optional<Publisher> findByName(String name) {

@@ -30,9 +30,21 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 public class PublisherResource {
 
   @GET
-  @Path("{id}")
+  @Path("{id: \\d+}")
   public Publisher findPublisherById(@PathParam("id") Long id) {
     return (Publisher) Publisher.findByIdOptional(id).orElseThrow(NotFoundException::new);
+  }
+
+  @GET
+  @Path("/{name: \\D+}")
+  public Publisher findPublisherByName(@PathParam("name") String name) {
+    return Publisher.findByName(name).orElseThrow(NotFoundException::new);
+  }
+
+  @GET
+  @Path("/like/{name}")
+  public List<Publisher> findPublisherContainingName(@PathParam("name") String name) {
+    return Publisher.findContainingName(name);
   }
 
   @GET
