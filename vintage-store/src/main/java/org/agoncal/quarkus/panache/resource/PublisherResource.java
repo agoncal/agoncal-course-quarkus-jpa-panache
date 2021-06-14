@@ -20,10 +20,13 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/publishers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
+@Transactional(SUPPORTS)
 public class PublisherResource {
 
   @GET
@@ -46,10 +49,9 @@ public class PublisherResource {
   }
 
   @DELETE
-  @Transactional
   @Path("/{id}")
-  public Response deletePublisher(@PathParam("id") Long id) {
+  @Transactional
+  public void deletePublisher(@PathParam("id") Long id) {
     Publisher.deleteById(id);
-    return Response.noContent().build();
   }
 }

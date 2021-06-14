@@ -19,10 +19,13 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/items")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
+@Transactional(SUPPORTS)
 public class ItemResource {
 
   @GET
@@ -49,9 +52,8 @@ public class ItemResource {
   @DELETE
   @Transactional
   @Path("/books/{id}")
-  public Response deleteBook(@PathParam("id") Long id) {
+  public void deleteBook(@PathParam("id") Long id) {
     Book.deleteById(id);
-    return Response.noContent().build();
   }
 
   @GET
@@ -78,9 +80,8 @@ public class ItemResource {
   @DELETE
   @Transactional
   @Path("/cds/{id}")
-  public Response deleteCD(@PathParam("id") Long id) {
+  public void deleteCD(@PathParam("id") Long id) {
     CD.deleteById(id);
-    return Response.noContent().build();
   }
 
 }

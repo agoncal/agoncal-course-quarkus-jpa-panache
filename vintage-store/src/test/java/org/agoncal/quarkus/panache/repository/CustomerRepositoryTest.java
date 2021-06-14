@@ -19,7 +19,9 @@ public class CustomerRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindACustomer() {
-    long nbCustomers = repository.count();
+    long count = repository.count();
+    int listAll = repository.listAll().size();
+    assertEquals(count, listAll);
 
     // Creates a Customer
     Customer customer = new Customer();
@@ -31,7 +33,7 @@ public class CustomerRepositoryTest {
     repository.persist(customer);
     assertNotNull(customer.getId());
 
-    assertEquals(nbCustomers + 1, repository.count());
+    assertEquals(count + 1, repository.count());
 
     // Gets the Customer
     customer = repository.findById(customer.getId());
@@ -39,6 +41,6 @@ public class CustomerRepositoryTest {
 
     // Deletes the Customer
     repository.deleteById(customer.getId());
-    assertEquals(nbCustomers, repository.count());
+    assertEquals(count, repository.count());
   }
 }

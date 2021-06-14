@@ -246,7 +246,7 @@ INSERT INTO t_customers (id, first_name, last_name, e_mail, created_date) VALUES
 	(37, 'Sandy', 'Kling', 'tracy.lindgren@yahoo.com', '2021-05-20T15:40:00.634620Z'),
 	(38, 'Ronny', 'Ledner', 'kathlyn.daniel@yahoo.com', '2021-05-20T15:40:00.634687Z'),
 	(39, 'Jeanie', 'Wunsch', 'lisandra.abshire@hotmail.com', '2021-05-20T15:40:00.634761Z'),
-	(40, 'Jesus', 'Bins', 'lanny.kuhic@hotmail.com', '2021-05-20T15:40:00.634830Z'),
+	(40, 'Dan', 'Bins', 'lanny.kuhic@hotmail.com', '2021-05-20T15:40:00.634830Z'),
 	(41, 'Solomon', 'Kreiger', 'ione.powlowski@yahoo.com', '2021-05-20T15:40:00.634898Z'),
 	(42, 'Hoyt', 'Rodriguez', 'toney.metz@yahoo.com', '2021-05-20T15:40:00.634965Z'),
 	(43, 'Bev', 'Ritchie', 'lamont.emmerich@yahoo.com', '2021-05-20T15:40:00.635033Z'),

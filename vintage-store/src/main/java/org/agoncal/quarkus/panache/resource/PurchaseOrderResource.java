@@ -20,10 +20,13 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/purchase-orders")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
+@Transactional(SUPPORTS)
 public class PurchaseOrderResource {
 
   @GET
@@ -48,8 +51,7 @@ public class PurchaseOrderResource {
   @DELETE
   @Transactional
   @Path("/{id}")
-  public Response deletePurchaseOrder(@PathParam("id") Long id) {
+  public void deletePurchaseOrder(@PathParam("id") Long id) {
     PurchaseOrder.deleteById(id);
-    return Response.noContent().build();
   }
 }

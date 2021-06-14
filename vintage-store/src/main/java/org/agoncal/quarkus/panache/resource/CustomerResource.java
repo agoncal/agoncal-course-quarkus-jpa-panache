@@ -21,10 +21,13 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/customers")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
+@Transactional(SUPPORTS)
 public class CustomerResource {
 
   @Inject
@@ -52,8 +55,7 @@ public class CustomerResource {
   @DELETE
   @Transactional
   @Path("/{id}")
-  public Response deleteCustomer(@PathParam("id") Long id) {
+  public void deleteCustomer(@PathParam("id") Long id) {
     repository.deleteById(id);
-    return Response.noContent().build();
   }
 }

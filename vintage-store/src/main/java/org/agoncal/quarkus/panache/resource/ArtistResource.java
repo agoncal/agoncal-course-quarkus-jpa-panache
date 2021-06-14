@@ -21,10 +21,13 @@ import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
 import java.util.List;
 
+import static javax.transaction.Transactional.TxType.SUPPORTS;
+
 @Path("/api/artists")
 @Produces(MediaType.APPLICATION_JSON)
 @Consumes(MediaType.APPLICATION_JSON)
 @ApplicationScoped
+@Transactional(SUPPORTS)
 public class ArtistResource {
 
   @Inject
@@ -52,9 +55,8 @@ public class ArtistResource {
   @DELETE
   @Transactional
   @Path("/{id}")
-  public Response deleteArtist(@PathParam("id") Long id) {
+  public void deleteArtist(@PathParam("id") Long id) {
     repository.deleteById(id);
-    return Response.noContent().build();
   }
 
 }

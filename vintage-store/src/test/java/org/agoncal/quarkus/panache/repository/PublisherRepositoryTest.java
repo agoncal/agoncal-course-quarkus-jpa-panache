@@ -14,7 +14,9 @@ public class PublisherRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindAPublisher() {
-    long nbPublishers = Publisher.count();
+    long count = Publisher.count();
+    int listAll = Publisher.listAll().size();
+    assertEquals(count, listAll);
 
     // Creates a Publisher
     Publisher publisher = new Publisher();
@@ -24,7 +26,7 @@ public class PublisherRepositoryTest {
     Publisher.persist(publisher);
     assertNotNull(publisher.id);
 
-    assertEquals(nbPublishers + 1, Publisher.count());
+    assertEquals(count + 1, Publisher.count());
 
     // Gets the Publisher
     publisher = Publisher.findById(publisher.id);
@@ -32,6 +34,6 @@ public class PublisherRepositoryTest {
 
     // Deletes the Artist
     Publisher.deleteById(publisher.id);
-    assertEquals(nbPublishers, Publisher.count());
+    assertEquals(count, Publisher.count());
   }
 }

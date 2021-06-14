@@ -16,7 +16,7 @@ public class TrackRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindATrack() {
-    long nbTracks = Track.count();
+    long countTracks = Track.count();
 
     // Creates a Track
     Track track = new Track();
@@ -27,7 +27,7 @@ public class TrackRepositoryTest {
     Track.persist(track);
     assertNotNull(track.id);
 
-    assertEquals(nbTracks + 1, Track.count());
+    assertEquals(countTracks + 1, Track.count());
 
     // Gets the Track
     track = Track.findById(track.id);
@@ -35,6 +35,6 @@ public class TrackRepositoryTest {
 
     // Deletes the Track
     Track.deleteById(track.id);
-    assertEquals(nbTracks, Track.count());
+    assertEquals(countTracks, Track.count());
   }
 }

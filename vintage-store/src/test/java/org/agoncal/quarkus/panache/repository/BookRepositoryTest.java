@@ -24,9 +24,9 @@ public class BookRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindABook() {
-    long nbArtists = artistRepository.count();
-    long nbPublishers = Publisher.count();
-    long nbBooks = Book.count();
+    long countArtists = artistRepository.count();
+    long countPublishers = Publisher.count();
+    long count = Book.count();
 
     // Creates an Artist
     Artist artist = new Artist();
@@ -54,9 +54,9 @@ public class BookRepositoryTest {
     assertNotNull(book.publisher.id);
     assertNotNull(book.artist.getId());
 
-    assertEquals(nbArtists + 1, artistRepository.count());
-    assertEquals(nbPublishers + 1, Publisher.count());
-    assertEquals(nbBooks + 1, Book.count());
+    assertEquals(countArtists + 1, artistRepository.count());
+    assertEquals(countPublishers + 1, Publisher.count());
+    assertEquals(count + 1, Book.count());
 
     // Gets the Book
     book = Book.findById(book.id);
@@ -64,8 +64,8 @@ public class BookRepositoryTest {
 
     // Deletes the Book
     Book.deleteById(book.id);
-    assertEquals(nbArtists + 1, artistRepository.count());
-    assertEquals(nbPublishers + 1, Publisher.count());
-    assertEquals(nbBooks, Book.count());
+    assertEquals(countArtists + 1, artistRepository.count());
+    assertEquals(countPublishers + 1, Publisher.count());
+    assertEquals(count, Book.count());
   }
 }

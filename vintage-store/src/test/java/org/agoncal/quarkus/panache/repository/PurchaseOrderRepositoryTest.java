@@ -29,12 +29,12 @@ public class PurchaseOrderRepositoryTest {
   @Test
   @TestTransaction
   public void shouldCreateAndFindAPurchaseOrder() {
-    long nbCustomers = customerRepository.count();
-    long nbArtists = artistRepository.count();
-    long nbPublishers = Publisher.count();
-    long nbBooks = Book.count();
-    long nbPurchaseOrders = PurchaseOrder.count();
-    long nbOrderLines = OrderLine.count();
+    long countCustomers = customerRepository.count();
+    long countArtists = artistRepository.count();
+    long countPublishers = Publisher.count();
+    long countBooks = Book.count();
+    long countPurchaseOrders = PurchaseOrder.count();
+    long countOrderLines = OrderLine.count();
 
     // Creates a Customer
     Customer customer = new Customer();
@@ -77,23 +77,23 @@ public class PurchaseOrderRepositoryTest {
     assertNotNull(purchaseOrder.id);
     assertEquals(1, purchaseOrder.orderLines.size());
 
-    assertEquals(nbCustomers + 1, customerRepository.count());
-    assertEquals(nbArtists + 1, artistRepository.count());
-    assertEquals(nbPublishers + 1, Publisher.count());
-    assertEquals(nbBooks + 1, Book.count());
-    assertEquals(nbPurchaseOrders + 1, PurchaseOrder.count());
-    assertEquals(nbOrderLines + 1, OrderLine.count());
+    assertEquals(countCustomers + 1, customerRepository.count());
+    assertEquals(countArtists + 1, artistRepository.count());
+    assertEquals(countPublishers + 1, Publisher.count());
+    assertEquals(countBooks + 1, Book.count());
+    assertEquals(countPurchaseOrders + 1, PurchaseOrder.count());
+    assertEquals(countOrderLines + 1, OrderLine.count());
 
     // Gets the PurchaseOrder
     purchaseOrder = PurchaseOrder.findById(purchaseOrder.id);
 
     // Deletes the PurchaseOrder
     PurchaseOrder.deleteById(purchaseOrder.id);
-    assertEquals(nbCustomers + 1, customerRepository.count());
-    assertEquals(nbArtists + 1, artistRepository.count());
-    assertEquals(nbPublishers + 1, Publisher.count());
-    assertEquals(nbBooks + 1, Book.count());
-    assertEquals(nbPurchaseOrders, PurchaseOrder.count());
-    assertEquals(nbOrderLines, OrderLine.count());
+    assertEquals(countCustomers + 1, customerRepository.count());
+    assertEquals(countArtists + 1, artistRepository.count());
+    assertEquals(countPublishers + 1, Publisher.count());
+    assertEquals(countBooks + 1, Book.count());
+    assertEquals(countPurchaseOrders, PurchaseOrder.count());
+    assertEquals(countOrderLines, OrderLine.count());
   }
 }
