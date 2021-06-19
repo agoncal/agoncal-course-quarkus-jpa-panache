@@ -1,0 +1,31 @@
+@startuml
+!include style.iuml
+
+interface PanacheRepositoryBase {
+  + default delete(Entity entity): void
+  + default flush(): void
+  + default isPersistent(Entity entity): boolean
+  + default persist(Entity entity): void
+  + default deleteAll(): long
+  + default deleteById(Id id): boolean
+  + default findById(Id id): Entity
+  + default findByIdOptional(Id id): Entity
+  + default persist(Iterable<Entity> entities): void
+  + default persist(Stream<Entity> entities): void
+  {method} ...
+}
+
+abstract class PanacheEntityBase {
+  + delete(): void
+  + flush(): void
+  + isPersistent(): boolean
+  + persist(): void
+  + {static} deleteAll(): long
+  + {static} deleteById(Object id): boolean
+  + {static} findById(Object id): PanacheEntityBase
+  + {static} findByIdOptional(Object id): Optional<PanacheEntityBase>
+  + {static} persist(Iterable<?> entities): void
+  + {static} persist(Stream<?> entities): void
+  {method} ...
+}
+@enduml
