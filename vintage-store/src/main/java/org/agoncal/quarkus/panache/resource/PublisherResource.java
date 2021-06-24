@@ -30,7 +30,7 @@ import static javax.transaction.Transactional.TxType.SUPPORTS;
 public class PublisherResource {
 
   @GET
-  @Path("{id: \\d+}")
+  @Path("/{id: \\d+}")
   public Publisher findPublisherById(@PathParam("id") Long id) {
     return (Publisher) Publisher.findByIdOptional(id).orElseThrow(NotFoundException::new);
   }

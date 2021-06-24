@@ -41,6 +41,7 @@ class ItemResourceTest {
   void shouldNotGetUnknownBook() {
     Long randomId = new Random().nextLong();
     given()
+      .header(ACCEPT, APPLICATION_JSON)
       .pathParam("id", randomId).
     when()
       .get("/api/items/books/{id}").
@@ -159,6 +160,7 @@ class ItemResourceTest {
   void shouldNotGetUnknownCD() {
     Long randomId = new Random().nextLong();
     given()
+      .header(ACCEPT, APPLICATION_JSON)
       .pathParam("id", randomId).
     when()
       .get("/api/items/cds/{id}").

@@ -9,6 +9,7 @@ import javax.inject.Inject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @QuarkusTest
 public class CustomerRepositoryTest {
@@ -22,6 +23,7 @@ public class CustomerRepositoryTest {
     long count = repository.count();
     int listAll = repository.listAll().size();
     assertEquals(count, listAll);
+    assertTrue(repository.listAllDans().size() <= listAll);
 
     // Creates a Customer
     Customer customer = new Customer();

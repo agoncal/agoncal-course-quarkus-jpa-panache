@@ -36,6 +36,7 @@ class CustomerResourceTest {
   void shouldNotGetUnknownCustomer() {
     Long randomId = new Random().nextLong();
     given()
+      .header(ACCEPT, APPLICATION_JSON)
       .pathParam("id", randomId).
     when()
       .get("/api/customers/{id}").

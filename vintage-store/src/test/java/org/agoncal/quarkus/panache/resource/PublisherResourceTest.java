@@ -4,6 +4,7 @@ package org.agoncal.quarkus.panache.resource;
 import io.quarkus.test.junit.QuarkusTest;
 import io.restassured.mapper.ObjectMapperType;
 import org.agoncal.quarkus.panache.model.Publisher;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.MethodOrderer;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
@@ -32,10 +33,11 @@ class PublisherResourceTest {
   private static int nbPublishers;
   private static String publisherId;
 
-  @Test
+  @Test @Disabled
   void shouldNotGetUnknownPublisher() {
     Long randomId = new Random().nextLong();
     given()
+      .header(ACCEPT, APPLICATION_JSON)
       .pathParam("id", randomId).
     when()
       .get("/api/publishers/{id}").

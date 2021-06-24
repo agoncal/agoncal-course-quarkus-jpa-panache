@@ -37,6 +37,7 @@ class PurchaseOrderResourceTest {
   void shouldNotGetUnknownPurchaseOrder() {
     Long randomId = new Random().nextLong();
     given()
+      .header(ACCEPT, APPLICATION_JSON)
       .pathParam("id", randomId).
     when()
       .get("/api/purchase-orders/{id}").
