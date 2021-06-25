@@ -1,5 +1,6 @@
 package org.agoncal.quarkus.panache.repository;
 
+import io.quarkus.panache.common.Sort;
 import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import org.agoncal.quarkus.jdbc.Artist;
@@ -14,6 +15,7 @@ import java.time.LocalDate;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @QuarkusTest
 public class BookRepositoryTest {
@@ -67,5 +69,19 @@ public class BookRepositoryTest {
     assertEquals(countArtists + 1, artistRepository.count());
     assertEquals(countPublishers + 1, Publisher.count());
     assertEquals(count, Book.count());
+  }
+
+  @Test
+  @TestTransaction
+  public void shouldCheckAdvancedQueries() {
+    long findAll = Book.find(null, Sort.by("id")).page(0, 1000).count();
+    assertEquals(findAll, Book.find(null, Sort.by("isbn")).page(0, 1000).count());
+    assertEquals(findAll, Book.find(null).page(0, 1000).count());
+    assertEquals(findAll, Book.find(null).count());
+    assertTrue(Book.find("nbOfPages < 100", Sort.by("nbOfPages")).page(0, 1000).count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("nbOfPages")).page(0, 1000).count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(0, 5).count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(1, 5).count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(2, 5).count() < findAll);
   }
 }

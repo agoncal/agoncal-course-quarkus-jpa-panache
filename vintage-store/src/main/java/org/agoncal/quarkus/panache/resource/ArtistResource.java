@@ -33,17 +33,26 @@ public class ArtistResource {
   @Inject
   ArtistRepository repository;
 
+  /**
+   * curl http://localhost:8080/api/artists/1
+   */
   @GET
   @Path("{id}")
   public Artist findArtistById(@PathParam("id") Long id) {
     return repository.findByIdOptional(id).orElseThrow(NotFoundException::new);
   }
 
+  /**
+   * curl http://localhost:8080/api/artists
+   */
   @GET
   public List<Artist> listAllArtists() {
     return repository.listAllArtistsSorted();
   }
 
+  /**
+   * curl -X POST http://localhost:8080/api/artists -H 'Content-Type: application/json' -d '{ "bio": "artist bi", "name": "artist name" }' -v
+   */
   @POST
   @Transactional
   public Response persistArtist(Artist artist, @Context UriInfo uriInfo) {
@@ -52,6 +61,9 @@ public class ArtistResource {
     return Response.created(builder.build()).build();
   }
 
+  /**
+   * curl -X DELETE http://localhost:8080/api/artists/1
+   */
   @DELETE
   @Transactional
   @Path("/{id}")
