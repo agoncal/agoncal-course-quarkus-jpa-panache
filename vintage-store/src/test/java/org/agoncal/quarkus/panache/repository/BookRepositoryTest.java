@@ -78,8 +78,10 @@ public class BookRepositoryTest {
     assertEquals(findAll, Book.find(null, Sort.by("isbn")).page(0, 1000).count());
     assertEquals(findAll, Book.find(null).page(0, 1000).count());
     assertEquals(findAll, Book.find(null).count());
+    assertTrue(Book.find("nbOfPages < 100").count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100", Sort.by("nbOfPages")).count() < findAll);
     assertTrue(Book.find("nbOfPages < 100", Sort.by("nbOfPages")).page(0, 1000).count() < findAll);
-    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("nbOfPages")).page(0, 1000).count() < findAll);
+    assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(0, 1000).count() < findAll);
     assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(0, 5).count() < findAll);
     assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(1, 5).count() < findAll);
     assertTrue(Book.find("nbOfPages < 100 and price > 10", Sort.by("price")).page(2, 5).count() < findAll);
