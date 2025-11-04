@@ -62,6 +62,20 @@ public class ArtistResource {
   }
 
   /**
+   * curl -X PUT http://localhost:8080/api/artists -H 'Content-Type: application/json' -d '{ "id": "1", "bio": "artist bi", "name": "artist name" }' -v
+   */
+  @Transactional
+  @PUT
+  @Path("/{id}")
+  public Response updateArtist(@PathParam("id") Long id, Artist artist) {
+      Artist managed = repository.findById(id);
+      if (managed == null) throw new NotFoundException();
+      managed.setName(artist.getName());
+      managed.setBio(artist.getBio());
+      return Response.ok(managed).build();
+  }
+
+  /**
    * curl -X DELETE http://localhost:8080/api/artists/1
    */
   @DELETE

@@ -119,6 +119,43 @@ class ArtistResourceTest {
 
   @Test
   @Order(5)
+  void shouldUpdateTheExtraArtist() {
+    Artist updatedArtist = new Artist();
+    updatedArtist.setName("Updated Name");
+    updatedArtist.setBio("Updated Bio");
+
+    given()
+        .body(updatedArtist, ObjectMapperType.JSONB)
+        .header(CONTENT_TYPE, APPLICATION_JSON)
+        .header(ACCEPT, APPLICATION_JSON)
+        .pathParam("id", artistId).
+    when()
+        .put("/api/artists/{id}").
+    then()
+        .statusCode(OK.getStatusCode())
+        .body("name", is("Updated Name"))
+        .body("bio", is("Updated Bio"))
+        .body("id", is(Integer.parseInt(artistId)));
+  }
+
+  @Test
+  @Order(6)
+  void shouldVerifyUpdatedArtist() {
+    given()
+        .header(ACCEPT, APPLICATION_JSON)
+        .pathParam("id", artistId).
+    when()
+        .get("/api/artists/{id}").
+    then()
+        .statusCode(OK.getStatusCode())
+        .body("name", is("Updated Name"))
+        .body("bio", is("Updated Bio"))
+        .body("id", is(Integer.parseInt(artistId)));
+  }
+
+
+  @Test
+  @Order(7)
   void shouldDeleteTheExtraArtist() {
     given()
       .header(ACCEPT, APPLICATION_JSON)
@@ -130,7 +167,7 @@ class ArtistResourceTest {
   }
 
   @Test
-  @Order(6)
+  @Order(8)
   void shouldGetLessAnArtist() {
     int artists =
       given()
@@ -143,5 +180,5 @@ class ArtistResourceTest {
         .extract().body().as(List.class).size();
 
     assertEquals(nbArtists, artists);
-  }
+  }  
 }
