@@ -34,8 +34,16 @@ public class CustomerPage {
 
   @GET
   @Path("{id}")
-  public TemplateInstance showCustomerById(@PathParam("id") Long id) {
-    return Templates.customer(repository.findById(id));
+  public TemplateInstance showCustomerById(@PathParam("id") Long id,
+                                       @QueryParam("query") @DefaultValue("") String query,
+                                       @QueryParam("sort") @DefaultValue("id") String sort,
+                                       @QueryParam("page") @DefaultValue("0") Integer pageIndex,
+                                       @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
+    return Templates.customer(repository.findById(id))
+                    .data("query", query)
+                    .data("sort", sort)
+                    .data("pageIndex", pageIndex)
+                    .data("pageSize", pageSize);
   }
 
   @GET

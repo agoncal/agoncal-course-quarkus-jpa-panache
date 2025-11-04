@@ -29,16 +29,25 @@ public class PublisherPage {
 
   @GET
   @Path("{id}")
-  public TemplateInstance showPublisherById(@PathParam("id") Long id) {
-    return Templates.publisher(Publisher.findById(id));
+  public TemplateInstance showPublisherById(@PathParam("id") Long id,
+                                       @QueryParam("query") @DefaultValue("") String query,
+                                       @QueryParam("sort") @DefaultValue("id") String sort,
+                                       @QueryParam("page") @DefaultValue("0") Integer pageIndex,
+                                       @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
+    return Templates.publisher(Publisher.findById(id))
+                    .data("query", query)
+                    .data("sort", sort)
+                    .data("pageIndex", pageIndex)
+                    .data("pageSize", pageSize);
   }
 
   @GET
   public TemplateInstance showAllPublishers(@QueryParam("query") String query, @QueryParam("sort") @DefaultValue("id") String sort, @QueryParam("page") @DefaultValue("0") Integer pageIndex, @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
-    return Templates.publishers(Publisher.find(query, Sort.by(sort)).page(pageIndex, pageSize).list())
+    return Templates.publishers(Publisher.find(query, Sort.by(sort))
+        .page(pageIndex, pageSize).list())
       .data("query", query)
       .data("sort", sort)
-      .data("page", pageIndex)
-      .data("size", pageSize);
+      .data("pageIndex", pageIndex)
+      .data("pageSize", pageSize);
   }
 }

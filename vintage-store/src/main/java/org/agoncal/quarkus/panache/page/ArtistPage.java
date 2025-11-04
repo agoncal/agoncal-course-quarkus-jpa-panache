@@ -34,9 +34,18 @@ public class ArtistPage {
 
   @GET
   @Path("{id}")
-  public TemplateInstance showArtistById(@PathParam("id") Long id) {
-    return Templates.artist(repository.findById(id));
+  public TemplateInstance showArtistById(@PathParam("id") Long id,
+                                        @QueryParam("query") @DefaultValue("") String query,
+                                        @QueryParam("sort") @DefaultValue("id") String sort,
+                                        @QueryParam("page") @DefaultValue("0") Integer pageIndex,
+                                        @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
+      return Templates.artist(repository.findById(id))
+        .data("query", query)
+        .data("sort", sort)
+        .data("pageIndex", pageIndex)
+        .data("pageSize", pageSize);
   }
+
 
   @GET
   public TemplateInstance showAllArtists(@QueryParam("query") String query, @QueryParam("sort") @DefaultValue("id") String sort, @QueryParam("page") @DefaultValue("0") Integer pageIndex, @QueryParam("size") @DefaultValue("1000") Integer pageSize) {
