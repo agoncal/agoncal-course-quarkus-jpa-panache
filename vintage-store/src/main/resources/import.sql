@@ -856,5 +856,16 @@ INSERT INTO t_purchase_orders (id, customer_fk, purchase_order_date, created_dat
 		(491, 49, 139, 4, '2021-05-20T15:40:00.751526Z'),
 		(492, 49, 21, 3, '2021-05-20T15:40:00.751539Z'),
 		(493, 49, 117, 4, '2021-05-20T15:40:00.751550Z');
-
-ALTER SEQUENCE hibernate_sequence RESTART WITH 600;
+<!-- for avoid error  Key (id)=(281) already exists in hibernate 6-->
+SELECT setval(
+  't_artists_SEQ',
+  COALESCE((SELECT MAX(id) FROM t_artists), 0)
+);
+SELECT setval(
+  't_publishers_SEQ',
+  COALESCE((SELECT MAX(id) FROM t_publishers), 0)
+);
+SELECT setval(
+  't_tracks_SEQ',
+  COALESCE((SELECT MAX(id) FROM t_tracks), 0)
+);
