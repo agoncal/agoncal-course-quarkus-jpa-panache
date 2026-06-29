@@ -856,5 +856,7 @@ INSERT INTO t_purchase_orders (id, customer_fk, purchase_order_date, created_dat
 		(491, 49, 139, 4, '2021-05-20T15:40:00.751526Z'),
 		(492, 49, 21, 3, '2021-05-20T15:40:00.751539Z'),
 		(493, 49, 117, 4, '2021-05-20T15:40:00.751550Z');
-
+<!-- for hibernate6 i have removed this ALTER SEQUENCE bcz hibernate6 cannot recognize hibernate_sequence-->
 ALTER SEQUENCE hibernate_sequence RESTART WITH 600;
+<!--for hibernate6 is better to use to handling transactions-->
+SELECT setval('t_artists_SEQ', COALESCE((SELECT MAX(id) FROM t_artists),0));
